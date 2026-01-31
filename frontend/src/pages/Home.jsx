@@ -361,42 +361,52 @@ const Home = () => {
 
       {/* Wall of Proof Section */}
       <section style={{
-        background: '#0A192F',
-        padding: '120px 60px',
+        background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
+        padding: '140px 80px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
       }}>
         <div style={{ maxWidth: '1200px', width: '100%' }}>
+          <div style={{
+            width: '60px',
+            height: '2px',
+            background: '#D4AF37',
+            margin: '0 auto 50px'
+          }} />
+          
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontSize: 'clamp(34px, 4.5vw, 52px)',
             fontWeight: '700',
             color: '#FFFFFF',
-            marginBottom: '20px',
+            marginBottom: '24px',
             textAlign: 'center',
-            lineHeight: '1.2'
+            lineHeight: '1.15',
+            letterSpacing: '-0.8px'
           }}>
             Look At The Chaos We Create
           </h2>
           
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: '18px',
-            color: '#E5E7EB',
+            fontSize: '17px',
+            color: 'rgba(229, 231, 235, 0.8)',
             lineHeight: '1.6',
             textAlign: 'center',
-            marginBottom: '60px',
-            fontWeight: '300'
+            marginBottom: '80px',
+            fontWeight: '300',
+            letterSpacing: '0.3px'
           }}>
-            We don't hope for success. We engineer it. When we take a company to the market, the response isn't just 'good'—it is historic.
+            We don't hope for success. We engineer it. When we take a company to the market,<br />the response isn't just 'good'—it is historic.
           </p>
           
           {/* Data Display Grid */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '40px',
-            marginBottom: '60px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '48px',
+            marginBottom: '80px'
           }}>
             {[
               { company: 'Indian Emulsifiers', times: '460' },
@@ -404,47 +414,51 @@ const Home = () => {
               { company: 'Transteel Seating', times: '49' }
             ].map((item, index) => (
               <div key={index} style={{
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(212, 175, 55, 0.3)',
-                padding: '40px',
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(212, 175, 55, 0.2)',
+                padding: '56px 40px',
                 textAlign: 'center',
-                transition: 'all 0.3s ease'
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                position: 'relative'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(212, 175, 55, 0.1)';
-                e.currentTarget.style.borderColor = '#D4AF37';
-                e.currentTarget.style.transform = 'translateY(-5px)';
+                e.currentTarget.style.background = 'rgba(212, 175, 55, 0.08)';
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.5)';
+                e.currentTarget.style.transform = 'translateY(-8px)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.3)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.2)';
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
               >
                 <div style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: '56px',
+                  fontSize: '68px',
                   fontWeight: '700',
                   color: '#D4AF37',
-                  marginBottom: '10px'
+                  marginBottom: '16px',
+                  letterSpacing: '-2px'
                 }}>
                   {item.times}×
                 </div>
                 <div style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: '14px',
+                  fontSize: '11px',
                   color: '#9CA3AF',
-                  marginBottom: '5px',
+                  marginBottom: '8px',
                   textTransform: 'uppercase',
-                  letterSpacing: '1px'
+                  letterSpacing: '2px',
+                  fontWeight: '500'
                 }}>
                   Over-Subscribed
                 </div>
                 <div style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: '18px',
+                  fontSize: '19px',
                   color: '#FFFFFF',
-                  fontWeight: '600'
+                  fontWeight: '500',
+                  letterSpacing: '0.2px'
                 }}>
                   {item.company}
                 </div>
@@ -455,16 +469,17 @@ const Home = () => {
           {/* Quote */}
           <blockquote style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(20px, 2.5vw, 28px)',
+            fontSize: 'clamp(22px, 2.8vw, 32px)',
             fontStyle: 'italic',
             color: '#D4AF37',
             textAlign: 'center',
-            maxWidth: '900px',
+            maxWidth: '950px',
             margin: '0 auto',
-            lineHeight: '1.6',
-            fontWeight: '400'
+            lineHeight: '1.5',
+            fontWeight: '400',
+            letterSpacing: '-0.3px'
           }}>
-            "460 Times Over-Subscribed means that for every 1 share available, 460 people were fighting to buy it. That isn't luck. That is a roadmap."
+            "460 Times Over-Subscribed means that for every 1 share available,<br />460 people were fighting to buy it. That isn't luck. That is a roadmap."
           </blockquote>
         </div>
       </section>
