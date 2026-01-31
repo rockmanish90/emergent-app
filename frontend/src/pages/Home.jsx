@@ -55,7 +55,91 @@ const Home = () => {
   };
 
   return (
-    <div className="landing-page" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="landing-page" style={{ fontFamily: "'Inter', sans-serif", position: 'relative' }}>
+      {/* Subtle grain texture overlay */}
+      <div style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+        opacity: 0.03,
+        pointerEvents: 'none',
+        zIndex: 1
+      }} />
+
+      {/* Navigation */}
+      <nav style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        background: 'rgba(10, 25, 47, 0.95)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
+        zIndex: 100,
+        padding: '24px 80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        {/* Logo */}
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '2px'
+        }}>
+          <h1 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: '24px',
+            fontWeight: '700',
+            color: '#D4AF37',
+            margin: 0,
+            letterSpacing: '1px'
+          }}>
+            RUSHABH
+          </h1>
+          <span style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '11px',
+            fontWeight: '400',
+            color: '#9CA3AF',
+            letterSpacing: '2px',
+            textTransform: 'uppercase'
+          }}>
+            Ventures
+          </span>
+        </div>
+
+        {/* CTA Button */}
+        <button 
+          onClick={scrollToForm}
+          style={{
+            background: 'transparent',
+            color: '#D4AF37',
+            border: '1px solid #D4AF37',
+            padding: '12px 32px',
+            fontSize: '13px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            letterSpacing: '1.5px',
+            textTransform: 'uppercase',
+            fontFamily: "'Inter', sans-serif"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = '#D4AF37';
+            e.target.style.color = '#000000';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'transparent';
+            e.target.style.color = '#D4AF37';
+          }}
+        >
+          Apply Now
+        </button>
+      </nav>
       {/* Hero Section */}
       <section className="hero-section" style={{
         background: '#0A192F',
