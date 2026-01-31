@@ -142,45 +142,76 @@ const Home = () => {
       </nav>
       {/* Hero Section */}
       <section className="hero-section" style={{
-        background: '#0A192F',
+        background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        paddingTop: '100px'
       }}>
+        {/* Decorative gold lines */}
+        <div style={{
+          position: 'absolute',
+          top: '20%',
+          left: '10%',
+          width: '150px',
+          height: '1px',
+          background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
+          opacity: 0.3
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '30%',
+          right: '15%',
+          width: '100px',
+          height: '1px',
+          background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
+          opacity: 0.3
+        }} />
+        
         <div style={{
           maxWidth: '1400px',
           width: '100%',
-          padding: '0 60px',
+          padding: '0 80px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '80px',
-          flexWrap: 'wrap'
+          gap: '100px',
+          flexWrap: 'wrap',
+          position: 'relative',
+          zIndex: 2
         }}>
           {/* Left Content */}
-          <div style={{ flex: '1', minWidth: '400px', zIndex: 2 }}>
+          <div style={{ flex: '1', minWidth: '450px', maxWidth: '650px' }}>
+            <div style={{
+              width: '60px',
+              height: '2px',
+              background: '#D4AF37',
+              marginBottom: '40px'
+            }} />
+            
             <h1 style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: 'clamp(42px, 5vw, 66px)',
+              fontSize: 'clamp(44px, 5.5vw, 72px)',
               fontWeight: '700',
               color: '#D4AF37',
-              lineHeight: '1.1',
-              marginBottom: '30px',
-              letterSpacing: '-0.62px'
+              lineHeight: '1.05',
+              marginBottom: '36px',
+              letterSpacing: '-1.2px'
             }}>
-              You Are Successful. But You Are Still 'Invisible'.
+              You Are Successful.<br />But You Are Still<br />'Invisible'.
             </h1>
             
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: 'clamp(18px, 2vw, 22px)',
-              color: '#E5E7EB',
-              lineHeight: '1.6',
-              marginBottom: '40px',
-              fontWeight: '300'
+              fontSize: 'clamp(17px, 1.8vw, 20px)',
+              color: 'rgba(229, 231, 235, 0.9)',
+              lineHeight: '1.7',
+              marginBottom: '48px',
+              fontWeight: '300',
+              letterSpacing: '0.3px'
             }}>
               You've built a powerhouse. Your turnover is strong. Your profits are real. But to the big investors and the public markets, you don't exist yet. Your wealth is trapped inside your factory walls.
             </p>
@@ -191,33 +222,35 @@ const Home = () => {
                 background: '#D4AF37',
                 color: '#000000',
                 border: 'none',
-                padding: '20px 48px',
-                fontSize: '18px',
+                padding: '22px 56px',
+                fontSize: '14px',
                 fontWeight: '700',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                letterSpacing: '1px',
-                fontFamily: "'Inter', sans-serif"
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
+                fontFamily: "'Inter', sans-serif",
+                boxShadow: '0 4px 20px rgba(212, 175, 55, 0.25)'
               }}
               onMouseEnter={(e) => {
                 e.target.style.background = '#C5A028';
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 8px 24px rgba(212, 175, 55, 0.4)';
+                e.target.style.transform = 'translateY(-3px)';
+                e.target.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
               }}
               onMouseLeave={(e) => {
                 e.target.style.background = '#D4AF37';
                 e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = 'none';
+                e.target.style.boxShadow = '0 4px 20px rgba(212, 175, 55, 0.25)';
               }}
             >
-              UNLOCK MY ROADMAP
+              Unlock My Roadmap
             </button>
           </div>
           
           {/* Right 3D Spline */}
           <div style={{
             flex: '1',
-            minWidth: '400px',
+            minWidth: '450px',
             height: '700px',
             position: 'relative',
             display: 'flex',
