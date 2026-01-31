@@ -599,31 +599,42 @@ const Home = () => {
 
       {/* Final CTA / Application Form */}
       <section id="application-form" style={{
-        background: '#D4AF37',
-        padding: '120px 60px',
+        background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
+        padding: '140px 80px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
       }}>
-        <div style={{ maxWidth: '700px', width: '100%' }}>
+        <div style={{ maxWidth: '650px', width: '100%' }}>
+          <div style={{
+            width: '60px',
+            height: '2px',
+            background: '#000000',
+            margin: '0 auto 50px'
+          }} />
+          
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontSize: 'clamp(36px, 4.8vw, 56px)',
             fontWeight: '700',
             color: '#000000',
             marginBottom: '20px',
             textAlign: 'center',
-            lineHeight: '1.2'
+            lineHeight: '1.1',
+            letterSpacing: '-0.8px'
           }}>
-            Your Seat at the Table Is Waiting.
+            Your Seat at the Table<br />Is Waiting.
           </h2>
           
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: '18px',
-            color: '#000000',
+            fontSize: '16px',
+            color: 'rgba(0, 0, 0, 0.8)',
             textAlign: 'center',
-            marginBottom: '60px',
-            fontWeight: '500'
+            marginBottom: '70px',
+            fontWeight: '500',
+            letterSpacing: '0.5px',
+            textTransform: 'uppercase'
           }}>
             Don't just contact us. Apply for an evaluation.
           </p>
@@ -631,18 +642,18 @@ const Home = () => {
           <form onSubmit={handleSubmit} style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '30px'
+            gap: '32px'
           }}>
             <div>
               <label style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                fontWeight: '600',
+                fontSize: '11px',
+                fontWeight: '700',
                 color: '#000000',
                 display: 'block',
-                marginBottom: '10px',
+                marginBottom: '12px',
                 textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                letterSpacing: '1.5px'
               }}>
                 Name
               </label>
@@ -654,22 +665,25 @@ const Home = () => {
                 required
                 style={{
                   width: '100%',
-                  padding: '16px 20px',
+                  padding: '18px 24px',
                   fontSize: '16px',
                   fontFamily: "'Inter', sans-serif",
-                  border: '2px solid #000000',
-                  background: '#FFFFFF',
+                  border: '2px solid rgba(0, 0, 0, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   color: '#000000',
                   outline: 'none',
                   transition: 'all 0.3s ease',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  fontWeight: '400'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#0A192F';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(10, 25, 47, 0.1)';
+                  e.target.style.borderColor = '#000000';
+                  e.target.style.background = '#FFFFFF';
+                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#000000';
+                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.95)';
                   e.target.style.boxShadow = 'none';
                 }}
               />
@@ -678,13 +692,13 @@ const Home = () => {
             <div>
               <label style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                fontWeight: '600',
+                fontSize: '11px',
+                fontWeight: '700',
                 color: '#000000',
                 display: 'block',
-                marginBottom: '10px',
+                marginBottom: '12px',
                 textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                letterSpacing: '1.5px'
               }}>
                 Company Name
               </label>
@@ -696,22 +710,25 @@ const Home = () => {
                 required
                 style={{
                   width: '100%',
-                  padding: '16px 20px',
+                  padding: '18px 24px',
                   fontSize: '16px',
                   fontFamily: "'Inter', sans-serif",
-                  border: '2px solid #000000',
-                  background: '#FFFFFF',
+                  border: '2px solid rgba(0, 0, 0, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   color: '#000000',
                   outline: 'none',
                   transition: 'all 0.3s ease',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  fontWeight: '400'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#0A192F';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(10, 25, 47, 0.1)';
+                  e.target.style.borderColor = '#000000';
+                  e.target.style.background = '#FFFFFF';
+                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#000000';
+                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.95)';
                   e.target.style.boxShadow = 'none';
                 }}
               />
@@ -720,13 +737,13 @@ const Home = () => {
             <div>
               <label style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                fontWeight: '600',
+                fontSize: '11px',
+                fontWeight: '700',
                 color: '#000000',
                 display: 'block',
-                marginBottom: '10px',
+                marginBottom: '12px',
                 textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                letterSpacing: '1.5px'
               }}>
                 Annual Turnover (in Crores ₹)
               </label>
@@ -739,22 +756,25 @@ const Home = () => {
                 placeholder="e.g., 75"
                 style={{
                   width: '100%',
-                  padding: '16px 20px',
+                  padding: '18px 24px',
                   fontSize: '16px',
                   fontFamily: "'Inter', sans-serif",
-                  border: '2px solid #000000',
-                  background: '#FFFFFF',
+                  border: '2px solid rgba(0, 0, 0, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   color: '#000000',
                   outline: 'none',
                   transition: 'all 0.3s ease',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  fontWeight: '400'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#0A192F';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(10, 25, 47, 0.1)';
+                  e.target.style.borderColor = '#000000';
+                  e.target.style.background = '#FFFFFF';
+                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#000000';
+                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.95)';
                   e.target.style.boxShadow = 'none';
                 }}
               />
@@ -763,13 +783,13 @@ const Home = () => {
             <div>
               <label style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: '14px',
-                fontWeight: '600',
+                fontSize: '11px',
+                fontWeight: '700',
                 color: '#000000',
                 display: 'block',
-                marginBottom: '10px',
+                marginBottom: '12px',
                 textTransform: 'uppercase',
-                letterSpacing: '0.5px'
+                letterSpacing: '1.5px'
               }}>
                 Mobile Number
               </label>
@@ -782,22 +802,25 @@ const Home = () => {
                 placeholder="+91 98765 43210"
                 style={{
                   width: '100%',
-                  padding: '16px 20px',
+                  padding: '18px 24px',
                   fontSize: '16px',
                   fontFamily: "'Inter', sans-serif",
-                  border: '2px solid #000000',
-                  background: '#FFFFFF',
+                  border: '2px solid rgba(0, 0, 0, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   color: '#000000',
                   outline: 'none',
                   transition: 'all 0.3s ease',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  fontWeight: '400'
                 }}
                 onFocus={(e) => {
-                  e.target.style.borderColor = '#0A192F';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(10, 25, 47, 0.1)';
+                  e.target.style.borderColor = '#000000';
+                  e.target.style.background = '#FFFFFF';
+                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
                 }}
                 onBlur={(e) => {
-                  e.target.style.borderColor = '#000000';
+                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.95)';
                   e.target.style.boxShadow = 'none';
                 }}
               />
@@ -810,32 +833,34 @@ const Home = () => {
                 background: '#000000',
                 color: '#FFFFFF',
                 border: 'none',
-                padding: '20px 48px',
-                fontSize: '18px',
+                padding: '22px 56px',
+                fontSize: '13px',
                 fontWeight: '700',
                 cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                transition: 'all 0.3s ease',
-                letterSpacing: '1px',
+                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                letterSpacing: '2px',
+                textTransform: 'uppercase',
                 fontFamily: "'Inter', sans-serif",
-                marginTop: '20px',
-                opacity: isSubmitting ? 0.7 : 1
+                marginTop: '24px',
+                opacity: isSubmitting ? 0.7 : 1,
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
               }}
               onMouseEnter={(e) => {
                 if (!isSubmitting) {
-                  e.target.style.background = '#0A192F';
-                  e.target.style.transform = 'translateY(-2px)';
-                  e.target.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.4)';
+                  e.target.style.background = '#1a1a1a';
+                  e.target.style.transform = 'translateY(-3px)';
+                  e.target.style.boxShadow = '0 8px 28px rgba(0, 0, 0, 0.4)';
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isSubmitting) {
                   e.target.style.background = '#000000';
                   e.target.style.transform = 'translateY(0)';
-                  e.target.style.boxShadow = 'none';
+                  e.target.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
                 }
               }}
             >
-              {isSubmitting ? 'SUBMITTING...' : 'SUBMIT APPLICATION'}
+              {isSubmitting ? 'Submitting...' : 'Submit Application'}
             </button>
           </form>
         </div>
