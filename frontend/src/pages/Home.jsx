@@ -487,41 +487,53 @@ const Home = () => {
       {/* Gatekeeper Section */}
       <section style={{
         background: '#000000',
-        padding: '120px 60px',
+        padding: '140px 80px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
       }}>
         <div style={{ maxWidth: '1000px', width: '100%' }}>
+          <div style={{
+            width: '60px',
+            height: '2px',
+            background: '#D4AF37',
+            margin: '0 auto 50px'
+          }} />
+          
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontSize: 'clamp(34px, 4.5vw, 52px)',
             fontWeight: '700',
             color: '#FFFFFF',
-            marginBottom: '40px',
+            marginBottom: '48px',
             textAlign: 'center',
-            lineHeight: '1.2'
+            lineHeight: '1.15',
+            letterSpacing: '-0.8px'
           }}>
             Are You Our Next Success Story?
           </h2>
           
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 'clamp(18px, 2vw, 20px)',
-            color: '#E5E7EB',
-            lineHeight: '1.8',
+            fontSize: 'clamp(17px, 1.8vw, 19px)',
+            color: 'rgba(229, 231, 235, 0.9)',
+            lineHeight: '1.85',
             textAlign: 'center',
-            marginBottom: '60px',
-            fontWeight: '300'
+            marginBottom: '80px',
+            fontWeight: '300',
+            letterSpacing: '0.3px'
           }}>
-            We are extremely selective. We do not work with everyone. We only work with companies that have the 'fuel' ready to burn.
+            We are extremely selective. We do not work with everyone.<br />We only work with companies that have the 'fuel' ready to burn.
           </p>
           
           {/* Checklist */}
           <div style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '30px',
-            marginBottom: '50px'
+            gap: '20px',
+            marginBottom: '70px',
+            maxWidth: '700px',
+            margin: '0 auto 70px'
           }}>
             {[
               'Annual Turnover between ₹50 Cr and ₹200 Cr.',
@@ -531,27 +543,38 @@ const Home = () => {
               <div key={index} style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '20px',
-                padding: '20px',
-                background: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid rgba(212, 175, 55, 0.2)'
-              }}>
+                gap: '24px',
+                padding: '28px 32px',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(212, 175, 55, 0.15)',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.4)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(212, 175, 55, 0.15)';
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
+              }}
+              >
                 <div style={{
-                  width: '32px',
-                  height: '32px',
+                  width: '28px',
+                  height: '28px',
                   background: '#D4AF37',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   flexShrink: 0
                 }}>
-                  <Check size={20} color="#000000" strokeWidth={3} />
+                  <Check size={18} color="#000000" strokeWidth={3} />
                 </div>
                 <span style={{
                   fontFamily: "'Inter', sans-serif",
-                  fontSize: '18px',
+                  fontSize: '17px',
                   color: '#FFFFFF',
-                  fontWeight: '400'
+                  fontWeight: '400',
+                  letterSpacing: '0.2px'
                 }}>
                   {item}
                 </span>
@@ -562,13 +585,14 @@ const Home = () => {
           {/* Closing Statement */}
           <p style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(22px, 2.5vw, 28px)',
+            fontSize: 'clamp(24px, 2.8vw, 32px)',
             color: '#D4AF37',
             textAlign: 'center',
             fontWeight: '600',
-            lineHeight: '1.4'
+            lineHeight: '1.4',
+            letterSpacing: '-0.3px'
           }}>
-            You've spent decades building your business. Give us 3 months to build your legacy.
+            You've spent decades building your business.<br />Give us 3 months to build your legacy.
           </p>
         </div>
       </section>
