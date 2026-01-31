@@ -316,33 +316,43 @@ const Home = () => {
 
       {/* Authority Section */}
       <section style={{
-        background: '#F3F4F6',
-        padding: '120px 60px',
+        background: '#F9FAFB',
+        padding: '140px 80px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
       }}>
-        <div style={{ maxWidth: '1200px', width: '100%' }}>
+        <div style={{ maxWidth: '1100px', width: '100%' }}>
+          <div style={{
+            width: '60px',
+            height: '2px',
+            background: '#D4AF37',
+            margin: '0 auto 50px'
+          }} />
+          
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontSize: 'clamp(34px, 4.5vw, 52px)',
             fontWeight: '700',
             color: '#111111',
-            marginBottom: '40px',
+            marginBottom: '48px',
             textAlign: 'center',
-            lineHeight: '1.2'
+            lineHeight: '1.15',
+            letterSpacing: '-0.8px'
           }}>
-            We Don't Consult. We Create Market Legends.
+            We Don't Consult.<br />We Create Market Legends.
           </h2>
           
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 'clamp(18px, 2vw, 20px)',
+            fontSize: 'clamp(17px, 1.8vw, 19px)',
             color: '#374151',
-            lineHeight: '1.8',
+            lineHeight: '1.85',
             textAlign: 'center',
-            maxWidth: '900px',
+            maxWidth: '850px',
             margin: '0 auto',
-            fontWeight: '400'
+            fontWeight: '400',
+            letterSpacing: '0.2px'
           }}>
             Rushabh Ventures is not a firm of 'consultants' who give you a thick book of advice and leave. We are architects. We don't just 'apply' for an IPO. We prepare your business for a market frenzy. When we step into the room, the biggest investors and the most elite merchant bankers listen. Why? Because we only bring them winners.
           </p>
