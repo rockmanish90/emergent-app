@@ -272,32 +272,42 @@ const Home = () => {
       {/* Reality Check Section */}
       <section style={{
         background: '#FFFFFF',
-        padding: '120px 60px',
+        padding: '140px 80px',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
       }}>
-        <div style={{ maxWidth: '1200px', width: '100%' }}>
+        <div style={{ maxWidth: '1100px', width: '100%' }}>
+          <div style={{
+            width: '60px',
+            height: '2px',
+            background: '#D4AF37',
+            margin: '0 auto 50px'
+          }} />
+          
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(32px, 4vw, 48px)',
+            fontSize: 'clamp(34px, 4.5vw, 52px)',
             fontWeight: '700',
             color: '#111111',
-            marginBottom: '40px',
+            marginBottom: '48px',
             textAlign: 'center',
-            lineHeight: '1.2'
+            lineHeight: '1.15',
+            letterSpacing: '-0.8px'
           }}>
-            The Great Divide: Why Some Prosper While Others Just 'Work'
+            The Great Divide: Why Some Prosper<br />While Others Just 'Work'
           </h2>
           
           <p style={{
             fontFamily: "'Inter', sans-serif",
-            fontSize: 'clamp(18px, 2vw, 20px)',
+            fontSize: 'clamp(17px, 1.8vw, 19px)',
             color: '#374151',
-            lineHeight: '1.8',
+            lineHeight: '1.85',
             textAlign: 'center',
-            maxWidth: '900px',
+            maxWidth: '850px',
             margin: '0 auto',
-            fontWeight: '400'
+            fontWeight: '400',
+            letterSpacing: '0.2px'
           }}>
             There are two types of business owners in India today: Those who stay 'private' and keep grinding for every single percent of growth, and those who go Public and watch their net worth explode overnight. Most promoters think the Public Market is a 'scary' place. That is exactly what your competitors want you to believe. They want you to stay small so they can stay ahead.
           </p>
