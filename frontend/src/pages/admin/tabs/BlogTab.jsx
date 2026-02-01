@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Plus, Trash2, Edit2, Eye, X, Save, Code, Type, Bold, Italic, Underline, 
   List, ListOrdered, Quote, Heading1, Heading2, Heading3, Heading4, Link, Image, 
-  AlignLeft, AlignCenter, AlignRight, Upload } from 'lucide-react';
+  AlignLeft, AlignCenter, AlignRight, Upload, HelpCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -299,6 +299,114 @@ const RichTextEditor = ({ content, onChange }) => {
   );
 };
 
+// FAQ Item Component
+const FAQItem = ({ faq, index, onUpdate, onRemove }) => {
+  return (
+    <div style={{
+      background: 'rgba(255, 255, 255, 0.02)',
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      padding: '20px',
+      marginBottom: '16px'
+    }}>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '12px'
+      }}>
+        <span style={{
+          fontSize: '12px',
+          fontWeight: '600',
+          color: '#D4AF37',
+          textTransform: 'uppercase',
+          letterSpacing: '1px'
+        }}>
+          FAQ #{index + 1}
+        </span>
+        <button
+          type="button"
+          onClick={() => onRemove(index)}
+          style={{
+            background: 'rgba(239, 68, 68, 0.1)',
+            border: 'none',
+            color: '#EF4444',
+            padding: '6px 12px',
+            fontSize: '12px',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px'
+          }}
+        >
+          <Trash2 size={14} />
+          Remove
+        </button>
+      </div>
+      
+      <div style={{ marginBottom: '12px' }}>
+        <label style={{
+          display: 'block',
+          fontSize: '11px',
+          fontWeight: '600',
+          color: '#9CA3AF',
+          marginBottom: '6px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px'
+        }}>
+          Question
+        </label>
+        <input
+          type="text"
+          value={faq.question}
+          onChange={(e) => onUpdate(index, 'question', e.target.value)}
+          placeholder="Enter the question..."
+          style={{
+            width: '100%',
+            padding: '12px 14px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            color: '#FFFFFF',
+            fontSize: '14px',
+            outline: 'none',
+            boxSizing: 'border-box'
+          }}
+        />
+      </div>
+      
+      <div>
+        <label style={{
+          display: 'block',
+          fontSize: '11px',
+          fontWeight: '600',
+          color: '#9CA3AF',
+          marginBottom: '6px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px'
+        }}>
+          Answer
+        </label>
+        <textarea
+          value={faq.answer}
+          onChange={(e) => onUpdate(index, 'answer', e.target.value)}
+          placeholder="Enter the answer..."
+          rows={3}
+          style={{
+            width: '100%',
+            padding: '12px 14px',
+            background: 'rgba(255, 255, 255, 0.05)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            color: '#FFFFFF',
+            fontSize: '14px',
+            outline: 'none',
+            boxSizing: 'border-box',
+            resize: 'vertical'
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+
 const BlogTab = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -315,7 +423,8 @@ const BlogTab = () => {
     author: 'Rushabh Ventures Team',
     category: '',
     image: '',
-    read_time: '5 min read'
+    read_time: '5 min read',
+    faqs: []
   });
 
   useEffect(() => {
@@ -355,14 +464,12 @@ const BlogTab = () => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
     if (!validTypes.includes(file.type)) {
       toast.error('Please upload a valid image file (JPG, PNG, GIF, or WebP)');
       return;
     }
 
-    // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       toast.error('Image size must be less than 5MB');
       return;
@@ -382,6 +489,30 @@ const BlogTab = () => {
     }
   };
 
+  // FAQ handlers
+  const addFAQ = () => {
+    setFormData(prev => ({
+      ...prev,
+      faqs: [...prev.faqs, { question: '', answer: '' }]
+    }));
+  };
+
+  const updateFAQ = (index, field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      faqs: prev.faqs.map((faq, i) => 
+        i === index ? { ...faq, [field]: value } : faq
+      )
+    }));
+  };
+
+  const removeFAQ = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      faqs: prev.faqs.filter((_, i) => i !== index)
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -390,12 +521,20 @@ const BlogTab = () => {
       return;
     }
 
+    // Filter out empty FAQs
+    const validFaqs = formData.faqs.filter(faq => faq.question.trim() && faq.answer.trim());
+
     try {
+      const postData = {
+        ...formData,
+        faqs: validFaqs.length > 0 ? validFaqs : null
+      };
+
       if (editingPost) {
-        await updateBlogPost(editingPost.slug, formData);
+        await updateBlogPost(editingPost.slug, postData);
         toast.success('Blog post updated');
       } else {
-        await createBlogPost(formData);
+        await createBlogPost(postData);
         toast.success('Blog post created');
       }
       setShowEditor(false);
@@ -418,7 +557,8 @@ const BlogTab = () => {
       author: post.author,
       category: post.category,
       image: post.image,
-      read_time: post.read_time
+      read_time: post.read_time,
+      faqs: post.faqs || []
     });
     setIsHtmlMode(false);
     setShowEditor(true);
@@ -445,7 +585,8 @@ const BlogTab = () => {
       author: 'Rushabh Ventures Team',
       category: '',
       image: '',
-      read_time: '5 min read'
+      read_time: '5 min read',
+      faqs: []
     });
   };
 
@@ -546,20 +687,38 @@ const BlogTab = () => {
                   }} />
                 )}
                 <div style={{ padding: '20px' }}>
-                  <span style={{
-                    fontSize: '11px',
-                    fontWeight: '600',
-                    color: '#D4AF37',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1px'
-                  }}>
-                    {post.category}
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                    <span style={{
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      color: '#D4AF37',
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px'
+                    }}>
+                      {post.category}
+                    </span>
+                    {post.faqs && post.faqs.length > 0 && (
+                      <span style={{
+                        fontSize: '10px',
+                        fontWeight: '600',
+                        color: '#10B981',
+                        background: 'rgba(16, 185, 129, 0.1)',
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '4px'
+                      }}>
+                        <HelpCircle size={10} />
+                        {post.faqs.length} FAQs
+                      </span>
+                    )}
+                  </div>
                   <h3 style={{
                     fontSize: '18px',
                     fontWeight: '600',
                     color: '#FFFFFF',
-                    margin: '8px 0 12px',
+                    margin: '0 0 12px',
                     lineHeight: '1.4'
                   }}>
                     {post.title}
@@ -787,7 +946,6 @@ const BlogTab = () => {
                   {uploadingImage ? 'Uploading...' : 'Upload'}
                 </button>
               </div>
-              {/* Image Preview */}
               {formData.image && (
                 <div style={{ marginTop: '12px' }}>
                   <img 
@@ -881,6 +1039,69 @@ const BlogTab = () => {
                   content={formData.content} 
                   onChange={handleContentChange}
                 />
+              )}
+            </div>
+
+            {/* FAQs Section */}
+            <div style={{ marginBottom: '30px' }}>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '16px'
+              }}>
+                <label style={{ ...labelStyle, marginBottom: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <HelpCircle size={16} color="#D4AF37" />
+                  Frequently Asked Questions
+                </label>
+                <button
+                  type="button"
+                  onClick={addFAQ}
+                  data-testid="add-faq-btn"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '8px 16px',
+                    background: 'rgba(16, 185, 129, 0.1)',
+                    border: '1px solid #10B981',
+                    color: '#10B981',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <Plus size={14} />
+                  Add FAQ
+                </button>
+              </div>
+
+              {formData.faqs.length === 0 ? (
+                <div style={{
+                  padding: '40px',
+                  textAlign: 'center',
+                  border: '2px dashed rgba(255, 255, 255, 0.1)',
+                  color: '#6B7280'
+                }}>
+                  <HelpCircle size={32} style={{ marginBottom: '12px', opacity: 0.5 }} />
+                  <p style={{ margin: 0, fontSize: '14px' }}>No FAQs added yet</p>
+                  <p style={{ margin: '8px 0 0', fontSize: '12px', opacity: 0.7 }}>
+                    Click "Add FAQ" to add frequently asked questions
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  {formData.faqs.map((faq, index) => (
+                    <FAQItem
+                      key={index}
+                      faq={faq}
+                      index={index}
+                      onUpdate={updateFAQ}
+                      onRemove={removeFAQ}
+                    />
+                  ))}
+                </div>
               )}
             </div>
 
