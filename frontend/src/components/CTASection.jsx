@@ -9,7 +9,8 @@ const CTASection = () => {
       background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
       padding: '80px 80px',
       textAlign: 'center'
-    }}>
+    }}
+    className="cta-section">
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         <h3 style={{
           fontFamily: "'Playfair Display', serif",
@@ -35,6 +36,7 @@ const CTASection = () => {
         </p>
         <button
           onClick={() => navigate('/contact')}
+          className="cta-button"
           style={{
             background: '#000000',
             color: '#FFFFFF',
