@@ -310,3 +310,74 @@ code {
         text-align: center;
     }
 }
+
+/* Additional responsive classes */
+@media (max-width: 768px) {
+    /* Contact page specific */
+    .contact-container {
+        flex-direction: column !important;
+    }
+    
+    .contact-info,
+    .contact-form-container {
+        min-width: 100% !important;
+    }
+    
+    /* Blog grid */
+    .blog-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Stats grid */
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Checklist items */
+    .checklist-item {
+        padding: 16px 12px !important;
+        gap: 12px !important;
+    }
+    
+    .checklist-item span {
+        font-size: 15px !important;
+    }
+    
+    /* Footer */
+    .site-footer > div {
+        flex-direction: column !important;
+        text-align: center;
+    }
+    
+    .footer-links {
+        justify-content: center !important;
+    }
+    
+    /* Application form */
+    .application-form {
+        gap: 16px !important;
+    }
+    
+    /* Related posts */
+    .related-posts-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+    section {
+        padding-left: 48px !important;
+        padding-right: 48px !important;
+    }
+    
+    footer {
+        padding-left: 48px !important;
+        padding-right: 48px !important;
+    }
+    
+    article {
+        padding-left: 48px !important;
+        padding-right: 48px !important;
+    }
+}
