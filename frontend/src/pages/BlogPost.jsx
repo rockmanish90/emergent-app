@@ -9,50 +9,42 @@ import Footer from '../components/Footer';
 const BlogPost = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const [post, setPost] = useState(null);
-  const [relatedPosts, setRelatedPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
+  
+  // Initialize with fallback data immediately - no loading spinner
+  const fallbackPost = getFallbackPost(slug);
+  const [post, setPost] = useState(fallbackPost);
+  const [relatedPosts, setRelatedPosts] = useState(
+    fallbackPost ? fallbackPosts.filter(p => p.id !== fallbackPost.id).slice(0, 3) : []
+  );
+  const [notFound, setNotFound] = useState(!fallbackPost);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     
+    // Fetch fresh data in background
     const fetchPost = async () => {
-      setLoading(true);
       try {
         const fetchedPost = await getBlogBySlug(slug);
         if (fetchedPost) {
           setPost(fetchedPost);
+          setNotFound(false);
           // Fetch related posts
           const allPosts = await getBlogPosts();
           setRelatedPosts(allPosts.filter(p => p.id !== fetchedPost.id).slice(0, 3));
-        } else {
-          // Try fallback
-          const fallback = getFallbackPost(slug);
-          if (fallback) {
-            setPost(fallback);
-            setRelatedPosts(fallbackPosts.filter(p => p.id !== fallback.id).slice(0, 3));
-          } else {
-            setNotFound(true);
-          }
+        } else if (!fallbackPost) {
+          setNotFound(true);
         }
       } catch (err) {
         console.error('Failed to fetch blog post:', err);
-        // Try fallback data
-        const fallback = getFallbackPost(slug);
-        if (fallback) {
-          setPost(fallback);
-          setRelatedPosts(fallbackPosts.filter(p => p.id !== fallback.id).slice(0, 3));
-        } else {
+        // Keep using fallback data silently if available
+        if (!fallbackPost) {
           setNotFound(true);
         }
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchPost();
-  }, [slug]);
+  }, [slug, fallbackPost]);
 
   if (loading) {
     return (
