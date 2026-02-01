@@ -9,9 +9,9 @@ const Home = () => {
   const [formData, setFormData] = useState({
     name: '',
     companyName: '',
-    annualTurnover: '',
     mobileNumber: ''
   });
+  //annualTurnover: '',
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
@@ -26,11 +26,11 @@ const Home = () => {
     e.preventDefault();
     
     // Validation
-    if (!formData.name || !formData.companyName || !formData.annualTurnover || !formData.mobileNumber) {
+    if (!formData.name || !formData.companyName || !formData.mobileNumber) {
       toast.error('Please fill in all fields');
       return;
     }
-
+      //!formData.annualTurnover ||
     setIsSubmitting(true);
     
     try {
@@ -40,9 +40,9 @@ const Home = () => {
         setFormData({
           name: '',
           companyName: '',
-          annualTurnover: '',
           mobileNumber: ''
         });
+        //annualTurnover: '',
       }
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
@@ -617,52 +617,8 @@ const Home = () => {
               />
             </div>
 
-            <div>
-              <label style={{
-                fontFamily: "'Inter', sans-serif",
-                fontSize: '11px',
-                fontWeight: '700',
-                color: '#000000',
-                display: 'block',
-                marginBottom: '12px',
-                textTransform: 'uppercase',
-                letterSpacing: '1.5px'
-              }}>
-                Annual Turnover (in Crores ₹)
-              </label>
-              <input
-                type="text"
-                name="annualTurnover"
-                data-testid="application-turnover-input"
-                value={formData.annualTurnover}
-                onChange={handleInputChange}
-                required
-                placeholder="e.g., 75"
-                style={{
-                  width: '100%',
-                  padding: '18px 24px',
-                  fontSize: '16px',
-                  fontFamily: "'Inter', sans-serif",
-                  border: '2px solid rgba(0, 0, 0, 0.2)',
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  color: '#000000',
-                  outline: 'none',
-                  transition: 'all 0.3s ease',
-                  boxSizing: 'border-box',
-                  fontWeight: '400'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#000000';
-                  e.target.style.background = '#FFFFFF';
-                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.2)';
-                  e.target.style.background = 'rgba(255, 255, 255, 0.95)';
-                  e.target.style.boxShadow = 'none';
-                }}
-              />
-            </div>
+
+            
 
             <div>
               <label style={{
@@ -760,3 +716,51 @@ const Home = () => {
 };
 
 export default Home;
+
+/**<div>
+              <label style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: '11px',
+                fontWeight: '700',
+                color: '#000000',
+                display: 'block',
+                marginBottom: '12px',
+                textTransform: 'uppercase',
+                letterSpacing: '1.5px'
+              }}>
+                Annual Turnover (in Crores ₹)
+              </label>
+              <input
+                type="text"
+                name="annualTurnover"
+                data-testid="application-turnover-input"
+                value={formData.annualTurnover}
+                onChange={handleInputChange}
+                required
+                placeholder="e.g., 75"
+                style={{
+                  width: '100%',
+                  padding: '18px 24px',
+                  fontSize: '16px',
+                  fontFamily: "'Inter', sans-serif",
+                  border: '2px solid rgba(0, 0, 0, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  color: '#000000',
+                  outline: 'none',
+                  transition: 'all 0.3s ease',
+                  boxSizing: 'border-box',
+                  fontWeight: '400'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#000000';
+                  e.target.style.background = '#FFFFFF';
+                  e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = 'rgba(0, 0, 0, 0.2)';
+                  e.target.style.background = 'rgba(255, 255, 255, 0.95)';
+                  e.target.style.boxShadow = 'none';
+                }}
+              />
+            </div>
+            **/
