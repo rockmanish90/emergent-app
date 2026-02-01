@@ -1,0 +1,512 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { toast } from 'sonner';
+import { submitApplication } from '../utils/mock';
+
+const ContactUs = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      toast.success('Thank you! We will get back to you within 24 hours.');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (error) {
+      toast.error('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="contact-page" style={{ fontFamily: "'Inter', sans-serif" }}>
+      {/* Navigation */}
+      <nav style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        background: 'rgba(10, 25, 47, 0.95)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
+        zIndex: 100,
+        padding: '24px 80px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', cursor: 'pointer' }} onClick={() => navigate('/')}>
+          <h1 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: '24px',
+            fontWeight: '700',
+            color: '#D4AF37',
+            margin: 0,
+            letterSpacing: '1px'
+          }}>
+            RUSHABH
+          </h1>
+          <span style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '11px',
+            fontWeight: '400',
+            color: '#9CA3AF',
+            letterSpacing: '2px',
+            textTransform: 'uppercase'
+          }}>
+            Ventures
+          </span>
+        </div>
+      </nav>
+
+      {/* Contact Section */}
+      <section style={{
+        background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
+        minHeight: '100vh',
+        padding: '180px 80px 100px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        <div style={{ maxWidth: '1200px', width: '100%', display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
+          {/* Contact Info */}
+          <div style={{ flex: '1', minWidth: '350px' }}>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: 'clamp(36px, 4.8vw, 56px)',
+              fontWeight: '700',
+              color: '#000000',
+              marginBottom: '30px',
+              lineHeight: '1.1',
+              letterSpacing: '-0.8px'
+            }}>
+              Get In Touch
+            </h2>
+            
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '17px',
+              color: 'rgba(0, 0, 0, 0.8)',
+              lineHeight: '1.7',
+              marginBottom: '60px',
+              fontWeight: '400',
+              letterSpacing: '0.3px'
+            }}>
+              Ready to unlock your company's true potential?<br />
+              Let's start the conversation.
+            </p>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+              <div style={{ display: 'flex', alignItems: 'start', gap: '20px' }}>
+                <div style={{
+                  width: '48px',
+                  height: '48px',
+                  background: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <Mail size={24} color="#D4AF37" />
+                </div>
+                <div>
+                  <h4 style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    color: '#000000',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.5px'
+                  }}>
+                    Email
+                  </h4>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '16px',
+                    color: 'rgba(0, 0, 0, 0.8)',
+                    fontWeight: '400'
+                  }}>
+                    contact@rushabhventures.com
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'start', gap: '20px' }}>
+                <div style={{
+                  width: '48px',
+                  height: '48px',
+                  background: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <Phone size={24} color="#D4AF37" />
+                </div>
+                <div>
+                  <h4 style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    color: '#000000',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.5px'
+                  }}>
+                    Phone
+                  </h4>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '16px',
+                    color: 'rgba(0, 0, 0, 0.8)',
+                    fontWeight: '400'
+                  }}>
+                    +91 (022) 1234 5678
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'start', gap: '20px' }}>
+                <div style={{
+                  width: '48px',
+                  height: '48px',
+                  background: '#000000',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0
+                }}>
+                  <MapPin size={24} color="#D4AF37" />
+                </div>
+                <div>
+                  <h4 style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    color: '#000000',
+                    marginBottom: '8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.5px'
+                  }}>
+                    Office
+                  </h4>
+                  <p style={{
+                    fontFamily: "'Inter', sans-serif",
+                    fontSize: '16px',
+                    color: 'rgba(0, 0, 0, 0.8)',
+                    fontWeight: '400',
+                    lineHeight: '1.6'
+                  }}>
+                    Nariman Point<br />
+                    Mumbai, Maharashtra 400021
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div style={{ flex: '1', minWidth: '350px' }}>
+            <form onSubmit={handleSubmit} style={{
+              background: 'rgba(255, 255, 255, 0.95)',
+              padding: '50px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '28px'
+            }}>
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Phone *
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Message *
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows="5"
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box',
+                    resize: 'vertical'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                style={{
+                  background: '#000000',
+                  color: '#FFFFFF',
+                  border: 'none',
+                  padding: '18px 40px',
+                  fontSize: '13px',
+                  fontWeight: '700',
+                  cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                  transition: 'all 0.3s ease',
+                  letterSpacing: '2px',
+                  textTransform: 'uppercase',
+                  fontFamily: "'Inter', sans-serif",
+                  opacity: isSubmitting ? 0.7 : 1
+                }}
+                onMouseEnter={(e) => {
+                  if (!isSubmitting) e.target.style.background = '#1a1a1a';
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSubmitting) e.target.style.background = '#000000';
+                }}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer style={{
+        background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
+        padding: '60px 80px',
+        borderTop: '1px solid rgba(212, 175, 55, 0.15)'
+      }}>
+        <div style={{
+          maxWidth: '1400px',
+          margin: '0 auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '30px'
+        }}>
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: '13px',
+            color: '#9CA3AF',
+            fontWeight: '300',
+            letterSpacing: '0.5px'
+          }}>
+            © 2025 Rushabh Ventures. We Create Market Legends.
+          </p>
+          
+          <div style={{ display: 'flex', gap: '40px' }}>
+            {[
+              { text: 'Home', path: '/' },
+              { text: 'About Us', path: '/about' },
+              { text: 'Contact Us', path: '/contact' },
+              { text: 'Privacy Policy', path: '/privacy' },
+              { text: 'Terms & Conditions', path: '/terms' }
+            ].map((link, index) => (
+              <a
+                key={index}
+                onClick={() => navigate(link.path)}
+                style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '12px',
+                  color: '#9CA3AF',
+                  textDecoration: 'none',
+                  fontWeight: '400',
+                  letterSpacing: '0.5px',
+                  transition: 'color 0.3s ease',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => e.target.style.color = '#D4AF37'}
+                onMouseLeave={(e) => e.target.style.color = '#9CA3AF'}
+              >
+                {link.text}
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default ContactUs;
