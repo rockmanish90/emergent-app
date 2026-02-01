@@ -1,9 +1,282 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Plus, Trash2, Edit2, Eye, X, Save, Code, Type } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Plus, Trash2, Edit2, Eye, X, Save, Code, Type, Bold, Italic, Underline, 
+  List, ListOrdered, Quote, Heading1, Heading2, Link, Image, AlignLeft, AlignCenter, AlignRight } from 'lucide-react';
 import { toast } from 'sonner';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import LinkExtension from '@tiptap/extension-link';
+import ImageExtension from '@tiptap/extension-image';
+import TextAlign from '@tiptap/extension-text-align';
+import UnderlineExtension from '@tiptap/extension-underline';
 import { getAdminBlogPosts, createBlogPost, updateBlogPost, deleteBlogPost } from '../../../utils/adminApi';
+
+// Toolbar Button Component
+const ToolbarButton = ({ onClick, isActive, children, title }) => (
+  <button
+    type="button"
+    onClick={onClick}
+    title={title}
+    style={{
+      padding: '8px',
+      background: isActive ? 'rgba(212, 175, 55, 0.2)' : 'transparent',
+      border: 'none',
+      color: isActive ? '#D4AF37' : '#333',
+      cursor: 'pointer',
+      borderRadius: '4px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: 'all 0.2s ease'
+    }}
+  >
+    {children}
+  </button>
+);
+
+// TipTap Editor with Toolbar
+const RichTextEditor = ({ content, onChange }) => {
+  const editor = useEditor({
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
+      LinkExtension.configure({
+        openOnClick: false,
+      }),
+      ImageExtension,
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
+      UnderlineExtension,
+    ],
+    content: content,
+    onUpdate: ({ editor }) => {
+      onChange(editor.getHTML());
+    },
+  });
+
+  const setLink = useCallback(() => {
+    if (!editor) return;
+    const previousUrl = editor.getAttributes('link').href;
+    const url = window.prompt('URL', previousUrl);
+
+    if (url === null) return;
+    if (url === '') {
+      editor.chain().focus().extendMarkRange('link').unsetLink().run();
+      return;
+    }
+
+    editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
+  }, [editor]);
+
+  const addImage = useCallback(() => {
+    if (!editor) return;
+    const url = window.prompt('Image URL');
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+  }, [editor]);
+
+  if (!editor) return null;
+
+  return (
+    <div style={{ border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '4px', overflow: 'hidden' }}>
+      {/* Toolbar */}
+      <div style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '2px',
+        padding: '8px',
+        background: '#f8f9fa',
+        borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
+      }}>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          isActive={editor.isActive('heading', { level: 1 })}
+          title="Heading 1"
+        >
+          <Heading1 size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          isActive={editor.isActive('heading', { level: 2 })}
+          title="Heading 2"
+        >
+          <Heading2 size={18} />
+        </ToolbarButton>
+
+        <div style={{ width: '1px', background: '#ddd', margin: '0 4px' }} />
+
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          isActive={editor.isActive('bold')}
+          title="Bold"
+        >
+          <Bold size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          isActive={editor.isActive('italic')}
+          title="Italic"
+        >
+          <Italic size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          isActive={editor.isActive('underline')}
+          title="Underline"
+        >
+          <Underline size={18} />
+        </ToolbarButton>
+
+        <div style={{ width: '1px', background: '#ddd', margin: '0 4px' }} />
+
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          isActive={editor.isActive('bulletList')}
+          title="Bullet List"
+        >
+          <List size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          isActive={editor.isActive('orderedList')}
+          title="Numbered List"
+        >
+          <ListOrdered size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleBlockquote().run()}
+          isActive={editor.isActive('blockquote')}
+          title="Quote"
+        >
+          <Quote size={18} />
+        </ToolbarButton>
+
+        <div style={{ width: '1px', background: '#ddd', margin: '0 4px' }} />
+
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setTextAlign('left').run()}
+          isActive={editor.isActive({ textAlign: 'left' })}
+          title="Align Left"
+        >
+          <AlignLeft size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setTextAlign('center').run()}
+          isActive={editor.isActive({ textAlign: 'center' })}
+          title="Align Center"
+        >
+          <AlignCenter size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().setTextAlign('right').run()}
+          isActive={editor.isActive({ textAlign: 'right' })}
+          title="Align Right"
+        >
+          <AlignRight size={18} />
+        </ToolbarButton>
+
+        <div style={{ width: '1px', background: '#ddd', margin: '0 4px' }} />
+
+        <ToolbarButton
+          onClick={setLink}
+          isActive={editor.isActive('link')}
+          title="Add Link"
+        >
+          <Link size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={addImage}
+          isActive={false}
+          title="Add Image"
+        >
+          <Image size={18} />
+        </ToolbarButton>
+      </div>
+
+      {/* Editor Content */}
+      <EditorContent 
+        editor={editor} 
+        style={{
+          minHeight: '350px',
+          background: '#fff'
+        }}
+      />
+
+      {/* Editor Styles */}
+      <style>
+        {`
+          .tiptap {
+            padding: 20px;
+            min-height: 350px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+          }
+          .tiptap h1 {
+            font-size: 2em;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            color: #111;
+          }
+          .tiptap h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #D4AF37;
+          }
+          .tiptap h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #333;
+          }
+          .tiptap p {
+            margin-bottom: 1em;
+          }
+          .tiptap ul, .tiptap ol {
+            margin-bottom: 1em;
+            padding-left: 1.5em;
+          }
+          .tiptap li {
+            margin-bottom: 0.5em;
+          }
+          .tiptap li::marker {
+            color: #D4AF37;
+          }
+          .tiptap blockquote {
+            border-left: 4px solid #D4AF37;
+            padding-left: 16px;
+            margin: 1em 0;
+            font-style: italic;
+            color: #555;
+          }
+          .tiptap a {
+            color: #D4AF37;
+            text-decoration: underline;
+          }
+          .tiptap img {
+            max-width: 100%;
+            height: auto;
+            margin: 1em 0;
+          }
+          .tiptap p.is-editor-empty:first-child::before {
+            content: attr(data-placeholder);
+            float: left;
+            color: #adb5bd;
+            pointer-events: none;
+            height: 0;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
 
 const BlogTab = () => {
   const [posts, setPosts] = useState([]);
@@ -21,27 +294,6 @@ const BlogTab = () => {
     image: '',
     read_time: '5 min read'
   });
-
-  // Quill editor modules configuration
-  const quillModules = useMemo(() => ({
-    toolbar: [
-      [{ 'header': [1, 2, 3, false] }],
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ 'color': [] }, { 'background': [] }],
-      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      [{ 'indent': '-1' }, { 'indent': '+1' }],
-      [{ 'align': [] }],
-      ['link', 'image'],
-      ['blockquote', 'code-block'],
-      ['clean']
-    ],
-  }), []);
-
-  const quillFormats = [
-    'header', 'bold', 'italic', 'underline', 'strike',
-    'color', 'background', 'list', 'bullet', 'indent',
-    'align', 'link', 'image', 'blockquote', 'code-block'
-  ];
 
   useEffect(() => {
     fetchPosts();
@@ -517,20 +769,10 @@ const BlogTab = () => {
                   placeholder="<p>Your blog content here...</p>"
                 />
               ) : (
-                <div className="quill-editor-wrapper">
-                  <ReactQuill
-                    theme="snow"
-                    value={formData.content}
-                    onChange={handleContentChange}
-                    modules={quillModules}
-                    formats={quillFormats}
-                    placeholder="Start writing your blog post..."
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      minHeight: '400px'
-                    }}
-                  />
-                </div>
+                <RichTextEditor 
+                  content={formData.content} 
+                  onChange={handleContentChange}
+                />
               )}
             </div>
 
@@ -555,89 +797,6 @@ const BlogTab = () => {
           </form>
         </div>
       )}
-
-      {/* Custom styles for Quill editor */}
-      <style>
-        {`
-          .quill-editor-wrapper .ql-container {
-            min-height: 350px;
-            font-size: 16px;
-            font-family: 'Inter', sans-serif;
-          }
-          .quill-editor-wrapper .ql-editor {
-            min-height: 350px;
-            padding: 20px;
-          }
-          .quill-editor-wrapper .ql-toolbar {
-            background: #f8f9fa;
-            border-color: rgba(0, 0, 0, 0.1);
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-          }
-          .quill-editor-wrapper .ql-container {
-            border-color: rgba(0, 0, 0, 0.1);
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
-          }
-          .quill-editor-wrapper .ql-editor h1 {
-            font-size: 2em;
-            margin-bottom: 0.5em;
-          }
-          .quill-editor-wrapper .ql-editor h2 {
-            font-size: 1.5em;
-            margin-bottom: 0.5em;
-            color: #D4AF37;
-          }
-          .quill-editor-wrapper .ql-editor h3 {
-            font-size: 1.25em;
-            margin-bottom: 0.5em;
-          }
-          .quill-editor-wrapper .ql-editor p {
-            margin-bottom: 1em;
-            line-height: 1.8;
-          }
-          .quill-editor-wrapper .ql-editor ul,
-          .quill-editor-wrapper .ql-editor ol {
-            margin-bottom: 1em;
-            padding-left: 1.5em;
-          }
-          .quill-editor-wrapper .ql-editor li {
-            margin-bottom: 0.5em;
-          }
-          .quill-editor-wrapper .ql-editor blockquote {
-            border-left: 4px solid #D4AF37;
-            padding-left: 16px;
-            margin: 1em 0;
-            font-style: italic;
-            color: #555;
-          }
-          .quill-editor-wrapper .ql-snow .ql-picker {
-            color: #333;
-          }
-          .quill-editor-wrapper .ql-snow .ql-stroke {
-            stroke: #333;
-          }
-          .quill-editor-wrapper .ql-snow .ql-fill {
-            fill: #333;
-          }
-          .quill-editor-wrapper .ql-snow.ql-toolbar button:hover,
-          .quill-editor-wrapper .ql-snow .ql-toolbar button:hover {
-            color: #D4AF37;
-          }
-          .quill-editor-wrapper .ql-snow.ql-toolbar button:hover .ql-stroke,
-          .quill-editor-wrapper .ql-snow .ql-toolbar button:hover .ql-stroke {
-            stroke: #D4AF37;
-          }
-          .quill-editor-wrapper .ql-snow.ql-toolbar button.ql-active,
-          .quill-editor-wrapper .ql-snow .ql-toolbar button.ql-active {
-            color: #D4AF37;
-          }
-          .quill-editor-wrapper .ql-snow.ql-toolbar button.ql-active .ql-stroke,
-          .quill-editor-wrapper .ql-snow .ql-toolbar button.ql-active .ql-stroke {
-            stroke: #D4AF37;
-          }
-        `}
-      </style>
     </div>
   );
 };
