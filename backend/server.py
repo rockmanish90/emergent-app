@@ -114,6 +114,10 @@ class ApplicationUpdate(BaseModel):
 
 
 # Blog Models
+class FAQItem(BaseModel):
+    question: str
+    answer: str
+
 class BlogPostCreate(BaseModel):
     slug: str
     title: str
@@ -123,6 +127,7 @@ class BlogPostCreate(BaseModel):
     category: str
     image: str
     read_time: str = "5 min read"
+    faqs: Optional[List[FAQItem]] = None
 
 class BlogPostResponse(BaseModel):
     model_config = ConfigDict(extra="ignore")
@@ -137,6 +142,7 @@ class BlogPostResponse(BaseModel):
     read_time: str
     category: str
     image: str
+    faqs: Optional[List[FAQItem]] = None
 
 
 # Admin Models
