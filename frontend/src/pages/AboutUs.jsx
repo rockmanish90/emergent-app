@@ -52,7 +52,7 @@ const AboutUs = () => {
             marginBottom: '36px',
             letterSpacing: '-1.2px'
           }}>
-            We Don't Just Consult.<br />We Create Market Legends.
+            We Are The Bridge Between<br />"Rich" and "Wealthy."
           </h1>
           
           <p style={{
@@ -66,13 +66,12 @@ const AboutUs = () => {
             maxWidth: '900px',
             margin: '0 auto'
           }}>
-            Rushabh Ventures is a boutique IPO advisory firm that transforms successful<br />
-            private businesses into public market powerhouses.
+            Most business owners spend their lives climbing a mountain,<br />only to realize there was a higher peak they couldn't see.
           </p>
         </div>
       </section>
 
-      {/* Our Story Section */}
+      {/* Introduction Section */}
       <section style={{
         background: '#FFFFFF',
         padding: '140px 80px',
@@ -82,69 +81,51 @@ const AboutUs = () => {
       }}>
         <div style={{ maxWidth: '1100px', width: '100%' }}>
           <div style={{
-            width: '60px',
-            height: '2px',
-            background: '#D4AF37',
-            margin: '0 auto 50px'
-          }} />
-          
-          <h2 style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: 'clamp(34px, 4.5vw, 52px)',
-            fontWeight: '700',
-            color: '#111111',
-            marginBottom: '48px',
-            textAlign: 'center',
-            lineHeight: '1.15',
-            letterSpacing: '-0.8px'
-          }}>
-            Our Story
-          </h2>
-          
-          <div style={{
             display: 'flex',
             flexDirection: 'column',
             gap: '32px',
             maxWidth: '850px',
-            margin: '0 auto'
+            margin: '0 auto',
+            textAlign: 'center'
           }}>
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: '18px',
+              fontSize: '20px',
               color: '#374151',
               lineHeight: '1.85',
               fontWeight: '400',
               letterSpacing: '0.2px'
             }}>
-              Founded with a singular mission: to help India's most promising private companies unlock their true value through strategic public market entry. We are not a traditional consultancy that hands you a thick report and walks away.
+              You have mastered the art of making a product. You have mastered the art of selling to customers. You have built a company that makes money.
             </p>
             
             <p style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: '18px',
+              fontSize: '20px',
               color: '#374151',
               lineHeight: '1.85',
               fontWeight: '400',
               letterSpacing: '0.2px'
             }}>
-              We are architects of market success. When we take on a client, we commit to engineering a market response that is historic. Our track record speaks for itself—companies we've guided have achieved subscription rates that industry veterans call "unprecedented."
+              But you haven't mastered the art of selling your company to the world.
             </p>
 
             <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: '18px',
-              color: '#374151',
-              lineHeight: '1.85',
-              fontWeight: '400',
-              letterSpacing: '0.2px'
+              fontFamily: "'Playfair Display', serif",
+              fontSize: '28px',
+              color: '#D4AF37',
+              lineHeight: '1.5',
+              fontWeight: '600',
+              letterSpacing: '-0.3px',
+              marginTop: '20px'
             }}>
-              We work exclusively with SME companies with annual turnovers between ₹50 Cr and ₹200 Cr—businesses that have proven their model, demonstrated consistent profitability, and are ready to scale through public capital.
+              That is why we exist.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Our Approach Section */}
+      {/* Two Decades Section */}
       <section style={{
         background: '#F9FAFB',
         padding: '140px 80px',
@@ -164,61 +145,66 @@ const AboutUs = () => {
             fontSize: 'clamp(34px, 4.5vw, 52px)',
             fontWeight: '700',
             color: '#111111',
-            marginBottom: '70px',
+            marginBottom: '48px',
             textAlign: 'center',
             lineHeight: '1.15',
             letterSpacing: '-0.8px'
           }}>
-            Our Approach
+            Two Decades in the Trenches
           </h2>
           
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '50px'
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '32px',
+            maxWidth: '850px',
+            margin: '0 auto'
           }}>
-            {[
-              {
-                title: 'Deep Due Diligence',
-                description: 'We don\'t take everyone. We conduct rigorous analysis to ensure your business has the fundamentals for public market success.'
-              },
-              {
-                title: 'Strategic Positioning',
-                description: 'We craft your narrative for institutional investors, highlighting unique value propositions that command premium valuations.'
-              },
-              {
-                title: 'Flawless Execution',
-                description: 'From documentation to roadshows, we manage every detail with precision, leaving nothing to chance.'
-              }
-            ].map((item, index) => (
-              <div key={index} style={{
-                padding: '40px',
-                background: 'rgba(255, 255, 255, 0.8)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
-                transition: 'all 0.3s ease'
-              }}>
-                <h3 style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: '28px',
-                  fontWeight: '600',
-                  color: '#D4AF37',
-                  marginBottom: '20px',
-                  letterSpacing: '-0.3px'
-                }}>
-                  {item.title}
-                </h3>
-                <p style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '16px',
-                  color: '#374151',
-                  lineHeight: '1.7',
-                  fontWeight: '400',
-                  letterSpacing: '0.2px'
-                }}>
-                  {item.description}
-                </p>
-              </div>
-            ))}
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '18px',
+              color: '#374151',
+              lineHeight: '1.85',
+              fontWeight: '400',
+              letterSpacing: '0.2px'
+            }}>
+              We are not new to this game. For over 20 years, we have been in the financial trenches. We have seen how money moves in India. We have seen how capital is structured. We have seen businesses rise, and we have seen them stumble because they didn't have the right guidance.
+            </p>
+            
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '18px',
+              color: '#374151',
+              lineHeight: '1.85',
+              fontWeight: '400',
+              letterSpacing: '0.2px'
+            }}>
+              We didn't start Rushabh Ventures to write reports. We started it to fix a broken system.
+            </p>
+
+            <p style={{
+              fontFamily: "'Inter', sans-serif",
+              fontSize: '18px',
+              color: '#374151',
+              lineHeight: '1.85',
+              fontWeight: '400',
+              letterSpacing: '0.2px'
+            }}>
+              We saw too many incredible Indian companies staying "small" simply because they didn't know how to open the door to the Public Markets. They were scared of the compliance. They were intimidated by the bankers.
+            </p>
+
+            <p style={{
+              fontFamily: "'Playfair Display', serif",
+              fontSize: '24px',
+              color: '#D4AF37',
+              lineHeight: '1.5',
+              fontWeight: '600',
+              letterSpacing: '-0.3px',
+              textAlign: 'center',
+              marginTop: '20px'
+            }}>
+              We decided to be the ones who kick that door open for you.
+            </p>
           </div>
         </div>
       </section>
