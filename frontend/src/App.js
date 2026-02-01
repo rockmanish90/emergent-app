@@ -9,12 +9,14 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import ScrollToTop from "./components/ScrollToTop";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
