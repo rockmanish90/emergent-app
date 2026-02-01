@@ -10,9 +10,10 @@ const ContactUs = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
+    companyName: '',
+    annualTurnover: '',
+    mobileNumber: '',
     email: '',
-    phone: '',
-    subject: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -25,8 +26,8 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
-      toast.error('Please fill in all required fields');
+    if (!formData.name || !formData.companyName || !formData.mobileNumber) {
+      toast.error('Please fill in all required fields (Name, Company Name, Mobile Number)');
       return;
     }
 
@@ -35,7 +36,7 @@ const ContactUs = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000));
       toast.success('Thank you! We will get back to you within 24 hours.');
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setFormData({ name: '', companyName: '', annualTurnover: '', mobileNumber: '', email: '', message: '' });
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
     } finally {
