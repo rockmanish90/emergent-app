@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { toast } from 'sonner';
 import { submitApplication } from '../utils/mock';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const ContactUs = () => {
   const navigate = useNavigate();
@@ -43,44 +45,8 @@ const ContactUs = () => {
 
   return (
     <div className="contact-page" style={{ fontFamily: "'Inter', sans-serif" }}>
-      {/* Navigation */}
-      <nav style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        background: 'rgba(10, 25, 47, 0.95)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
-        zIndex: 100,
-        padding: '24px 80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', cursor: 'pointer' }} onClick={() => navigate('/')}>
-          <h1 style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: '24px',
-            fontWeight: '700',
-            color: '#D4AF37',
-            margin: 0,
-            letterSpacing: '1px'
-          }}>
-            RUSHABH
-          </h1>
-          <span style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '11px',
-            fontWeight: '400',
-            color: '#9CA3AF',
-            letterSpacing: '2px',
-            textTransform: 'uppercase'
-          }}>
-            Ventures
-          </span>
-        </div>
-      </nav>
+      {/* Header */}
+      <Header />
 
       {/* Contact Section */}
       <section style={{
@@ -450,61 +416,7 @@ const ContactUs = () => {
       </section>
 
       {/* Footer */}
-      <footer style={{
-        background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
-        padding: '60px 80px',
-        borderTop: '1px solid rgba(212, 175, 55, 0.15)'
-      }}>
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '30px'
-        }}>
-          <p style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '13px',
-            color: '#9CA3AF',
-            fontWeight: '300',
-            letterSpacing: '0.5px'
-          }}>
-            © 2025 Rushabh Ventures. We Create Market Legends.
-          </p>
-          
-          <div style={{ display: 'flex', gap: '40px' }}>
-            {[
-              { text: 'Home', path: '/' },
-              { text: 'About Us', path: '/about' },
-              { text: 'Contact Us', path: '/contact' },
-              { text: 'Privacy Policy', path: '/privacy' },
-              { text: 'Terms & Conditions', path: '/terms' }
-            ].map((link, index) => (
-              <a
-                key={index}
-                onClick={() => navigate(link.path)}
-                style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '12px',
-                  color: '#9CA3AF',
-                  textDecoration: 'none',
-                  fontWeight: '400',
-                  letterSpacing: '0.5px',
-                  transition: 'color 0.3s ease',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer'
-                }}
-                onMouseEnter={(e) => e.target.style.color = '#D4AF37'}
-                onMouseLeave={(e) => e.target.style.color = '#9CA3AF'}
-              >
-                {link.text}
-              </a>
-            ))}
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
