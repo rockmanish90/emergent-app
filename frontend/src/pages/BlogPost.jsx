@@ -227,6 +227,85 @@ const BlogPost = () => {
             className="blog-content"
           />
 
+          {/* FAQs Section */}
+          {post.faqs && post.faqs.length > 0 && (
+            <div style={{
+              marginTop: '60px',
+              padding: '40px',
+              background: '#F9FAFB',
+              border: '1px solid rgba(0, 0, 0, 0.1)'
+            }}>
+              <h2 style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: '28px',
+                fontWeight: '700',
+                color: '#111111',
+                marginBottom: '32px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px'
+              }}>
+                <span style={{
+                  width: '40px',
+                  height: '40px',
+                  background: 'rgba(212, 175, 55, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: '50%',
+                  color: '#D4AF37',
+                  fontSize: '20px'
+                }}>?</span>
+                Frequently Asked Questions
+              </h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {post.faqs.map((faq, index) => (
+                  <details
+                    key={index}
+                    style={{
+                      background: '#FFFFFF',
+                      border: '1px solid rgba(0, 0, 0, 0.1)',
+                      padding: '0',
+                      cursor: 'pointer'
+                    }}
+                    className="faq-item"
+                  >
+                    <summary style={{
+                      padding: '20px 24px',
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '16px',
+                      fontWeight: '600',
+                      color: '#111111',
+                      listStyle: 'none',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '16px'
+                    }}>
+                      <span>{faq.question}</span>
+                      <span className="faq-icon" style={{
+                        color: '#D4AF37',
+                        fontWeight: '700',
+                        fontSize: '20px',
+                        transition: 'transform 0.3s ease'
+                      }}>+</span>
+                    </summary>
+                    <div style={{
+                      padding: '0 24px 20px 24px',
+                      fontFamily: "'Inter', sans-serif",
+                      fontSize: '15px',
+                      color: '#6B7280',
+                      lineHeight: '1.7',
+                      borderTop: '1px solid rgba(0, 0, 0, 0.05)'
+                    }}>
+                      <p style={{ marginTop: '16px' }}>{faq.answer}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* CTA Section */}
           <div style={{
             marginTop: '60px',
