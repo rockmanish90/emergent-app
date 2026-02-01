@@ -480,6 +480,19 @@ const BlogPost = () => {
           .blog-content li::marker {
             color: #D4AF37;
           }
+
+          /* FAQ Styles */
+          .faq-item summary::-webkit-details-marker {
+            display: none;
+          }
+          
+          .faq-item[open] summary .faq-icon {
+            transform: rotate(45deg);
+          }
+          
+          .faq-item summary:hover {
+            background: rgba(212, 175, 55, 0.03);
+          }
         `}
       </style>
     </div>
