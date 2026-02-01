@@ -866,10 +866,16 @@ const Home = () => {
             display: 'flex',
             gap: '40px'
           }}>
-            {['Privacy Policy', 'Terms & Conditions'].map((link, index) => (
+            {[
+              { text: 'Home', path: '/' },
+              { text: 'About Us', path: '/about' },
+              { text: 'Contact Us', path: '/contact' },
+              { text: 'Privacy Policy', path: '/privacy' },
+              { text: 'Terms & Conditions', path: '/terms' }
+            ].map((link, index) => (
               <a
                 key={index}
-                href="#"
+                href={link.path}
                 style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '12px',
@@ -883,7 +889,7 @@ const Home = () => {
                 onMouseEnter={(e) => e.target.style.color = '#D4AF37'}
                 onMouseLeave={(e) => e.target.style.color = '#9CA3AF'}
               >
-                {link}
+                {link.text}
               </a>
             ))}
           </div>
