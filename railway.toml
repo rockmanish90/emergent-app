@@ -3,9 +3,9 @@ builder = "nixpacks"
 
 [services.backend]
 source = "backend"
-# Railway will try to auto-detect, but this forces it to use your file
-startCommand = "python server.py" 
-healthcheckPath = "/docs"
+# This tells Railway to run uvicorn pointing to your 'app' inside 'server.py'
+startCommand = "uvicorn server:app --host 0.0.0.0 --port $PORT"
+healthcheckPath = "/api/" 
 
 [services.frontend]
 source = "frontend"
