@@ -394,6 +394,11 @@ async def admin_create_blog_post(post: BlogPostCreate, email: str = Depends(veri
     post_id = str(uuid.uuid4())
     date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     
+    # Convert FAQs to dict format
+    faqs_data = None
+    if post.faqs:
+        faqs_data = [{"question": faq.question, "answer": faq.answer} for faq in post.faqs]
+    
     post_doc = {
         "id": post_id,
         "slug": post.slug,
@@ -404,7 +409,8 @@ async def admin_create_blog_post(post: BlogPostCreate, email: str = Depends(veri
         "date": date,
         "read_time": post.read_time,
         "category": post.category,
-        "image": post.image
+        "image": post.image,
+        "faqs": faqs_data
     }
     
     await db.blog_posts.insert_one(post_doc)
@@ -418,6 +424,11 @@ async def admin_update_blog_post(slug: str, post: BlogPostCreate, email: str = D
     if not existing:
         raise HTTPException(status_code=404, detail="Blog post not found")
     
+    # Convert FAQs to dict format
+    faqs_data = None
+    if post.faqs:
+        faqs_data = [{"question": faq.question, "answer": faq.answer} for faq in post.faqs]
+    
     update_data = {
         "title": post.title,
         "excerpt": post.excerpt,
@@ -425,7 +436,8 @@ async def admin_update_blog_post(slug: str, post: BlogPostCreate, email: str = D
         "author": post.author,
         "read_time": post.read_time,
         "category": post.category,
-        "image": post.image
+        "image": post.image,
+        "faqs": faqs_data
     }
     
     # If slug is changing, check the new slug doesn't exist
