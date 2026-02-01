@@ -15,13 +15,11 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
 - **Typography**:
   - Headlines: Playfair Display (serif, heavy weight)
   - Body: Inter (sans-serif, clean weights)
-- **Enhancement**: Grain texture overlay, decorative gold lines
 
 ## User Personas
 - **Primary**: Indian SME & Mainboard Business Owners/Promoters
 - **Annual Turnover**: ₹50 Cr - ₹200 Cr
 - **Goals**: National visibility, legacy building, wealth liquidity
-- **Pain Points**: Feeling "invisible" in public markets, wealth trapped in business
 
 ## What's Been Implemented
 
@@ -32,86 +30,95 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
 - ✅ Fully responsive design with mobile optimization
 - ✅ Application form with validation
 - ✅ Toast notifications for form feedback
-- ✅ Smooth scroll behavior
 
 ### Phase 2 - Design Refinement (Complete)
 - ✅ Fixed luxury navigation with RUSHABH VENTURES logo
-- ✅ Gradient backgrounds for depth (navy to darker navy)
-- ✅ Subtle grain texture overlay across site
-- ✅ Decorative gold accent lines
+- ✅ Gradient backgrounds for depth
 - ✅ Enhanced typography hierarchy
-- ✅ Improved hover animations with cubic-bezier easing
+- ✅ Improved hover animations
 
 ### Phase 3 - Hero Layout Update (Complete)
-- ✅ Changed hero from split layout to centered layout
-- ✅ Removed 3D Spline component per client request
-- ✅ Full-width centered content with text-center alignment
-- ✅ Button styled with brackets: "[ UNLOCK MY ROADMAP ]"
+- ✅ Centered hero layout
+- ✅ Full-width centered content
 
 ### Phase 4 - Additional Pages (Complete)
-- ✅ **About Us Page** (/about) - Hero banner with company story
-- ✅ **Contact Us Page** (/contact) - Contact form with info
-- ✅ **Privacy Policy** (/privacy) - Professional 8-section policy
-- ✅ **Terms & Conditions** (/terms) - Comprehensive 12-section terms
+- ✅ **About Us Page** (/about)
+- ✅ **Contact Us Page** (/contact)
+- ✅ **Privacy Policy** (/privacy)
+- ✅ **Terms & Conditions** (/terms)
 
 ### Phase 5 - Blog Section (Complete)
-- ✅ **Blog List Page** (/blog) - Grid layout with blog post cards
-- ✅ **Blog Post Page** (/blog/:slug) - Individual article layout
-- ✅ 4 blog posts with IPO-focused content
-- ✅ Category badges, read time indicators
-- ✅ Related articles section
+- ✅ **Blog List Page** (/blog)
+- ✅ **Blog Post Page** (/blog/:slug)
+- ✅ 4 IPO-focused blog posts
 
 ### Phase 6 - Backend Integration (Complete - Feb 1, 2025)
-- ✅ **Contact Form API** (`POST /api/contact`) - Saves to MongoDB
-- ✅ **Application Form API** (`POST /api/application`) - Saves to MongoDB
-- ✅ **Email Notifications** - Gmail SMTP integration sends notifications to justb2bemails@gmail.com
+- ✅ **Contact Form API** (`POST /api/contact`) - Saves to MongoDB + Email notification
+- ✅ **Application Form API** (`POST /api/application`) - Saves to MongoDB + Email notification
 - ✅ **Blog CRUD API** - Full REST API for blog management
-  - `GET /api/blog` - List all posts
-  - `GET /api/blog/:slug` - Get single post
-  - `POST /api/blog` - Create post
-  - `PUT /api/blog/:slug` - Update post
-  - `DELETE /api/blog/:slug` - Delete post
-- ✅ **Header Navigation** - Added nav links (Home, About, Blog, Contact)
-- ✅ **Mobile Menu** - Responsive hamburger menu for mobile devices
-- ✅ **Data-testid Attributes** - Added for better testability
+- ✅ **Gmail SMTP Integration** - Notifications to justb2bemails@gmail.com
+
+### Phase 7 - Admin Panel (Complete - Feb 1, 2025)
+- ✅ **Admin Login** (/admin) - Simple password authentication with JWT
+- ✅ **Dashboard Overview** - Stats cards for applications, contacts, blog posts, files
+- ✅ **Applications Tab** - List, search, filter, status update, delete
+- ✅ **Contacts Tab** - List, search, filter, status update, delete
+- ✅ **Blog CMS** - Create, edit, delete blog posts with auto-slug generation
+- ✅ **File Manager** - Upload, download, copy URL, delete files
+- ✅ **Mobile Responsive** - Hamburger menu for admin on mobile
 
 ## Site Structure
 
-### Pages
+### Public Pages
 1. **Home** (/) - Main landing page with hero and application form
 2. **About Us** (/about) - Company story and approach
 3. **Contact Us** (/contact) - Contact form and information
 4. **Blog** (/blog) - Blog listing page
 5. **Blog Post** (/blog/:slug) - Individual blog article
-6. **Privacy Policy** (/privacy) - Privacy policy document
-7. **Terms & Conditions** (/terms) - Terms document
+6. **Privacy Policy** (/privacy)
+7. **Terms & Conditions** (/terms)
 
-### Navigation
-- Fixed top navigation with links: Home, About, Blog, Contact
-- Active page indicator (gold underline)
-- Mobile hamburger menu for responsive design
-- Footer navigation with all page links
+### Admin Pages
+1. **Admin Login** (/admin) - Secure login portal
+2. **Admin Dashboard** (/admin/dashboard) - Management interface with tabs
 
 ## Technical Stack
 - **Frontend**: React 19, React Router DOM, Tailwind CSS, Lucide React
-- **Backend**: FastAPI, Motor (async MongoDB driver)
+- **Backend**: FastAPI, Motor (async MongoDB driver), PyJWT
 - **Database**: MongoDB
 - **Email**: Gmail SMTP with App Password
+- **Auth**: JWT with 24hr expiration
 
 ## API Endpoints
 
-### Contact/Application
-- `POST /api/contact` - Submit contact form (sends email notification)
-- `GET /api/contacts` - List all contacts
-- `POST /api/application` - Submit IPO application (sends email notification)
-- `GET /api/applications` - List all applications
+### Public Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/contact | Submit contact form |
+| POST | /api/application | Submit IPO application |
+| GET | /api/blog | List all blog posts |
+| GET | /api/blog/:slug | Get single blog post |
+| GET | /api/files/:filename | Serve uploaded file |
 
-### Blog
-- `GET /api/blog` - List all blog posts
-- `GET /api/blog/:slug` - Get single blog post by slug
-- `POST /api/blog` - Create new blog post
-- `PUT /api/blog/:slug` - Update existing blog post
-- `DELETE /api/blog/:slug` - Delete blog post
+### Admin Endpoints (JWT Protected)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/admin/login | Admin login |
+| GET | /api/admin/verify | Verify token |
+| GET | /api/admin/stats | Dashboard statistics |
+| GET | /api/admin/contacts | List contacts |
+| PUT | /api/admin/contacts/:id | Update contact |
+| DELETE | /api/admin/contacts/:id | Delete contact |
+| GET | /api/admin/applications | List applications |
+| PUT | /api/admin/applications/:id | Update application |
+| DELETE | /api/admin/applications/:id | Delete application |
+| GET | /api/admin/blog | List blog posts |
+| POST | /api/admin/blog | Create blog post |
+| PUT | /api/admin/blog/:slug | Update blog post |
+| DELETE | /api/admin/blog/:slug | Delete blog post |
+| GET | /api/admin/files | List files |
+| POST | /api/admin/files/upload | Upload file |
+| DELETE | /api/admin/files/:filename | Delete file |
 
 ## Database Schema
 
@@ -126,7 +133,8 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
   email: String (optional),
   message: String (optional),
   created_at: DateTime,
-  status: String ("pending")
+  status: String ("pending"|"contacted"|"converted"|"rejected"),
+  notes: String
 }
 ```
 
@@ -139,7 +147,8 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
   annual_turnover: String,
   mobile_number: String,
   created_at: DateTime,
-  status: String ("pending")
+  status: String ("pending"|"reviewing"|"qualified"|"contacted"|"converted"|"rejected"),
+  notes: String
 }
 ```
 
@@ -163,9 +172,12 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
 ```
 /app
 ├── backend/
-│   ├── server.py           # FastAPI app with all endpoints
+│   ├── server.py           # FastAPI with all endpoints
 │   ├── email_service.py    # Gmail SMTP service
 │   ├── seed_data.py        # Blog data seeder
+│   ├── uploads/            # Uploaded files directory
+│   ├── tests/
+│   │   └── test_admin_api.py
 │   ├── requirements.txt
 │   └── .env
 └── frontend/
@@ -181,15 +193,28 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
     │   │   ├── PrivacyPolicy.jsx
     │   │   ├── TermsConditions.jsx
     │   │   ├── BlogList.jsx
-    │   │   └── BlogPost.jsx
+    │   │   ├── BlogPost.jsx
+    │   │   └── admin/
+    │   │       ├── AdminLogin.jsx
+    │   │       ├── AdminDashboard.jsx
+    │   │       └── tabs/
+    │   │           ├── ContactsTab.jsx
+    │   │           ├── ApplicationsTab.jsx
+    │   │           ├── BlogTab.jsx
+    │   │           └── FilesTab.jsx
     │   ├── utils/
-    │   │   ├── api.js        # API service functions
-    │   │   ├── blogData.js   # Fallback blog data
-    │   │   └── mock.js       # Legacy mock (deprecated)
+    │   │   ├── api.js        # Public API functions
+    │   │   ├── adminApi.js   # Admin API functions
+    │   │   └── blogData.js   # Fallback blog data
     │   ├── App.js
     │   └── index.css
     └── .env
 ```
+
+## Admin Credentials
+- **Email**: rushabhventureshq@gmail.com
+- **Password**: rushabhventureshq
+- **Access URL**: /admin
 
 ## Environment Variables
 
@@ -201,47 +226,45 @@ CORS_ORIGINS="*"
 GMAIL_USER="justb2bemails@gmail.com"
 GMAIL_APP_PASSWORD="[REDACTED]"
 NOTIFICATION_EMAIL="justb2bemails@gmail.com"
+ADMIN_EMAIL="rushabhventureshq@gmail.com"
+ADMIN_PASSWORD="rushabhventureshq"
+JWT_SECRET="[REDACTED]"
 ```
 
-### Frontend (.env)
-```
-REACT_APP_BACKEND_URL=https://venture-partners-1.preview.emergentagent.com
-```
+## Test Reports
+- `/app/test_reports/iteration_1.json` - Backend API tests (18/18 passed)
+- `/app/test_reports/iteration_2.json` - Admin panel tests (30/30 passed, 100% success)
+- `/app/backend/tests/test_admin_api.py` - Admin API test suite
 
 ## Prioritized Backlog
 
-### P0 - Completed
-- ✅ Backend API for form submissions
-- ✅ MongoDB storage for contacts/applications
-- ✅ Email notifications on new submissions
-- ✅ Blog CRUD API
+### Completed ✅
+- Landing page with luxury design
+- Multi-page architecture
+- Backend integration with MongoDB
+- Email notifications via Gmail SMTP
+- Admin dashboard with full CRUD
+- Blog CMS
+- File Manager
 
 ### P1 Features (Next Priority)
-- Admin dashboard to view applications and contacts
-- Blog CMS interface (create/edit/delete posts via UI)
-- Analytics tracking (Google Analytics/PostHog)
+- Analytics integration (Google Analytics/PostHog)
+- SEO optimization (meta tags, sitemap, robots.txt)
+- Image optimization/CDN
 
 ### P2 Features (Future Enhancements)
 - Lead scoring based on turnover/margins
 - Automated follow-up email sequences
 - Calendar integration for booking consultations
 - Social proof widget ("12 applications this week")
-- "As Seen In" media logos section
 - Newsletter subscription
-- Blog categories and tags filtering
+- Blog categories/tags filtering
 - Blog search functionality
-- Social sharing buttons for blog posts
 
 ### P3 Features (Nice-to-Have)
-- Case study detail pages for each IPO success
-- Video testimonials from past clients
+- Case study detail pages
+- Video testimonials
 - Resources section (whitepapers, guides)
 - Multi-language support (Hindi, Gujarati)
-- WhatsApp integration for instant contact
+- WhatsApp integration
 - Blog comments system
-- Author pages
-- Blog RSS feed
-
-## Test Reports
-- `/app/test_reports/iteration_1.json` - Backend API tests (18/18 passed)
-- `/app/backend/tests/test_api.py` - pytest test suite
