@@ -590,10 +590,17 @@ async def admin_get_stats(email: str = Depends(verify_jwt_token)):
 # Include the router in the main app
 app.include_router(api_router)
 
+origins = [
+    "https://rushabhventures.com",
+    "https://www.rushabhventures.com",
+    "https://emergent-frontend-production.up.railway.app", # Add your railway frontend url too
+    "http://localhost:3000", # For local testing
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
