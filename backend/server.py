@@ -70,7 +70,7 @@ class StatusCheckCreate(BaseModel):
 class ContactCreate(BaseModel):
     name: str
     company_name: str
-    annual_turnover: Optional[str] = None
+    #annual_turnover: Optional[str] = None
     mobile_number: str
     email: Optional[str] = None
     message: Optional[str] = None
@@ -81,7 +81,7 @@ class ContactResponse(BaseModel):
     id: str
     name: str
     company_name: str
-    annual_turnover: Optional[str] = None
+    #annual_turnover: Optional[str] = None
     mobile_number: str
     email: Optional[str] = None
     message: Optional[str] = None
@@ -97,7 +97,7 @@ class ContactUpdate(BaseModel):
 class ApplicationCreate(BaseModel):
     name: str
     company_name: str
-    annual_turnover: str
+    #annual_turnover: str
     mobile_number: str
 
 class ApplicationResponse(BaseModel):
@@ -230,7 +230,7 @@ async def submit_contact(contact: ContactCreate, background_tasks: BackgroundTas
         "id": contact_id,
         "name": contact.name,
         "company_name": contact.company_name,
-        "annual_turnover": contact.annual_turnover,
+       # "annual_turnover": contact.annual_turnover,
         "mobile_number": contact.mobile_number,
         "email": contact.email,
         "message": contact.message,
@@ -258,7 +258,7 @@ async def submit_application(application: ApplicationCreate, background_tasks: B
         "id": app_id,
         "name": application.name,
         "company_name": application.company_name,
-        "annual_turnover": application.annual_turnover,
+       #"annual_turnover": application.annual_turnover,
         "mobile_number": application.mobile_number,
         "created_at": created_at,
         "status": "pending",
