@@ -681,6 +681,26 @@ const AboutUs = () => {
               borderTop: '1px solid rgba(0, 0, 0, 0.1)',
               paddingTop: '40px'
             }}>
+              {/* Founder Image */}
+              <div style={{
+                width: '160px',
+                height: '160px',
+                margin: '0 auto 24px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: '4px solid #D4AF37',
+                boxShadow: '0 8px 32px rgba(212, 175, 55, 0.2)'
+              }}>
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_ca3b6450-e647-4e8a-bb45-f0fc3a0aa25a/artifacts/2uiputtn_Abhishek%20Rai.jpeg"
+                  alt="Abhishek Rai - Founder, Rushabh Ventures"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
               <p style={{
                 fontFamily: "'Playfair Display', serif",
                 fontSize: '32px',
