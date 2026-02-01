@@ -51,17 +51,17 @@ const ContactUs = () => {
       <Header />
 
       {/* Contact Section */}
-      <section style={{
+      <section className="contact-section" style={{
         background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
         minHeight: '100vh',
-        padding: '180px 80px 100px',
+        padding: '140px 24px 60px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-        <div style={{ maxWidth: '1200px', width: '100%', display: 'flex', gap: '80px', flexWrap: 'wrap' }}>
+        <div className="contact-container" style={{ maxWidth: '1200px', width: '100%', display: 'flex', gap: '48px', flexWrap: 'wrap' }}>
           {/* Contact Info */}
-          <div style={{ flex: '1', minWidth: '350px' }}>
+          <div className="contact-info" style={{ flex: '1', minWidth: '280px' }}>
             <h2 style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: 'clamp(36px, 4.8vw, 56px)',
@@ -198,13 +198,13 @@ const ContactUs = () => {
           </div>
 
           {/* Contact Form */}
-          <div style={{ flex: '1', minWidth: '350px' }}>
-            <form onSubmit={handleSubmit} style={{
+          <div className="contact-form-container" style={{ flex: '1', minWidth: '280px' }}>
+            <form onSubmit={handleSubmit} className="contact-form" style={{
               background: 'rgba(255, 255, 255, 0.95)',
-              padding: '50px',
+              padding: '32px 24px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '28px'
+              gap: '20px'
             }}>
               <div>
                 <label style={{
