@@ -5,9 +5,9 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer style={{
+    <footer className="site-footer" style={{
       background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
-      padding: '60px 80px',
+      padding: '40px 24px',
       borderTop: '1px solid rgba(212, 175, 55, 0.15)',
       position: 'relative',
       zIndex: 2
@@ -19,7 +19,7 @@ const Footer = () => {
         justifyContent: 'space-between',
         alignItems: 'center',
         flexWrap: 'wrap',
-        gap: '30px'
+        gap: '24px'
       }}>
         <p style={{
           fontFamily: "'Inter', sans-serif",
@@ -31,9 +31,9 @@ const Footer = () => {
           © 2025 Rushabh Ventures. We Create Market Legends.
         </p>
         
-        <div style={{
+        <div className="footer-links" style={{
           display: 'flex',
-          gap: '40px',
+          gap: '24px',
           flexWrap: 'wrap'
         }}>
           {[

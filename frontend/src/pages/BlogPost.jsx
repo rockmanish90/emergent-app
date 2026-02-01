@@ -95,8 +95,7 @@ const BlogPost = () => {
       {/* Article Content */}
       <article style={{
         background: '#FFFFFF',
-        padding: '80px 80px 60px',
-        paddingTop: '140px',
+        padding: '120px 24px 60px',
         display: 'flex',
         justifyContent: 'center'
       }}>
@@ -331,29 +330,29 @@ const BlogPost = () => {
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
-        <section style={{
+        <section className="section-padding" style={{
           background: '#F9FAFB',
-          padding: '80px 80px',
+          padding: '60px 24px',
           display: 'flex',
           justifyContent: 'center'
         }}>
           <div style={{ maxWidth: '1200px', width: '100%' }}>
             <h2 style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: '42px',
+              fontSize: 'clamp(28px, 5vw, 42px)',
               fontWeight: '700',
               color: '#111111',
-              marginBottom: '50px',
+              marginBottom: '40px',
               textAlign: 'center',
               letterSpacing: '-0.8px'
             }}>
               Related Articles
             </h2>
 
-            <div style={{
+            <div className="related-posts-grid" style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '40px'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '24px'
             }}>
               {relatedPosts.map((relatedPost) => (
                 <div

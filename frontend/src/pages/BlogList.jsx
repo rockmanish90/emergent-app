@@ -35,9 +35,9 @@ const BlogList = () => {
       <Header />
 
       {/* Hero Section */}
-      <section style={{
+      <section className="hero-section" style={{
         background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
-        padding: '180px 80px 100px',
+        padding: '140px 24px 80px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -77,17 +77,17 @@ const BlogList = () => {
       </section>
 
       {/* Blog Grid */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#FFFFFF',
-        padding: '100px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center'
       }}>
         <div style={{ maxWidth: '1200px', width: '100%' }}>
-          <div style={{
+          <div className="blog-grid" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-            gap: '50px'
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: '32px'
           }}>
             {blogPosts.map((post) => (
               <article
