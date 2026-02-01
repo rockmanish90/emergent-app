@@ -11,11 +11,11 @@ const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
     companyName: '',
-    annualTurnover: '',
     mobileNumber: '',
     email: '',
     message: ''
   });
+  //annualTurnover: '',
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (e) => {
@@ -36,7 +36,8 @@ const ContactUs = () => {
     try {
       await submitContact(formData);
       toast.success('Thank you! We will get back to you within 24 hours.');
-      setFormData({ name: '', companyName: '', annualTurnover: '', mobileNumber: '', email: '', message: '' });
+      setFormData({ name: '', companyName: '', mobileNumber: '', email: '', message: '' });
+      //annualTurnover: ''
     } catch (error) {
       console.error('Contact form error:', error);
       toast.error('Something went wrong. Please try again.');
@@ -118,7 +119,7 @@ const ContactUs = () => {
                     color: 'rgba(0, 0, 0, 0.8)',
                     fontWeight: '400'
                   }}>
-                    contact@rushabhventures.com
+                    abhishek@rushabhventures.com
                   </p>
                 </div>
               </div>
@@ -153,7 +154,7 @@ const ContactUs = () => {
                     color: 'rgba(0, 0, 0, 0.8)',
                     fontWeight: '400'
                   }}>
-                    +91 (022) 1234 5678
+                    +919833359997
                   </p>
                 </div>
               </div>
@@ -189,8 +190,11 @@ const ContactUs = () => {
                     fontWeight: '400',
                     lineHeight: '1.6'
                   }}>
-                    Nariman Point<br />
-                    Mumbai, Maharashtra 400021
+                    Orion Business Park,<br />
+                    1001 and 1002,<br />
+                    S.V Road, Shimpoli Junction <br />
+                    Borivali West<br />
+                    Mumbai
                   </p>
                 </div>
               </div>
@@ -278,7 +282,7 @@ const ContactUs = () => {
                 />
               </div>
 
-              <div>
+              <div style="display:none">
                 <label style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '11px',
