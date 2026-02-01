@@ -11,7 +11,6 @@ const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
     companyName: '',
-    annualTurnover: '',
     mobileNumber: '',
     email: '',
     message: ''
@@ -37,7 +36,7 @@ const ContactUs = () => {
     try {
       await submitContact(formData);
       toast.success('Thank you! We will get back to you within 24 hours.');
-      setFormData({ name: '', companyName: '', annualTurnover: '', mobileNumber: '', email: '', message: '' });
+      setFormData({ name: '', companyName: '', mobileNumber: '', email: '', message: '' });
     } catch (error) {
       console.error('Contact form error:', error);
       toast.error('Something went wrong. Please try again.');
@@ -45,7 +44,7 @@ const ContactUs = () => {
       setIsSubmitting(false);
     }
   };
-
+//annualTurnover: '',
   return (
     <div className="contact-page" style={{ fontFamily: "'Inter', sans-serif" }}>
       {/* Header */}
@@ -282,41 +281,8 @@ const ContactUs = () => {
                 />
               </div>
 
-              <div>
-                <label style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '11px',
-                  fontWeight: '700',
-                  color: '#000000',
-                  display: 'block',
-                  marginBottom: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1.5px'
-                }}>
-                  Annual Turnover (in Crores ₹)
-                </label>
-                <input
-                  type="text"
-                  name="annualTurnover"
-                  value={formData.annualTurnover}
-                  onChange={handleInputChange}
-                  placeholder="e.g., 75"
-                  style={{
-                    width: '100%',
-                    padding: '14px 18px',
-                    fontSize: '15px',
-                    fontFamily: "'Inter', sans-serif",
-                    border: '2px solid rgba(0, 0, 0, 0.15)',
-                    background: '#FFFFFF',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'all 0.3s ease',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#000000'}
-                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
-                />
-              </div>
+
+              
               
               <div>
                 <label style={{
@@ -463,3 +429,43 @@ const ContactUs = () => {
   );
 };
 export default ContactUs;
+
+
+
+/**
+ <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Annual Turnover (in Crores ₹)
+                </label>
+                <input
+                  type="text"
+                  name="annualTurnover"
+                  value={formData.annualTurnover}
+                  onChange={handleInputChange}
+                  placeholder="e.g., 75"
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+        **/
