@@ -81,12 +81,11 @@ const Home = () => {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: '100px'
+        padding: '100px 24px 60px'
       }}>
         <div style={{
           maxWidth: '1100px',
           width: '100%',
-          padding: '0 80px',
           position: 'relative',
           zIndex: 2,
           textAlign: 'center'
@@ -152,9 +151,9 @@ const Home = () => {
       </section>
 
       {/* Reality Check Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#FFFFFF',
-        padding: '140px 80px',
+        padding: '100px 24px',
         display: 'flex',
         justifyContent: 'center',
         position: 'relative'
@@ -197,9 +196,9 @@ const Home = () => {
       </section>
 
       {/* Authority Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#F9FAFB',
-        padding: '140px 80px',
+        padding: '100px 24px',
         display: 'flex',
         justifyContent: 'center',
         position: 'relative'
@@ -242,9 +241,9 @@ const Home = () => {
       </section>
 
       {/* Wall of Proof Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
-        padding: '140px 80px',
+        padding: '100px 24px',
         display: 'flex',
         justifyContent: 'center',
         position: 'relative'
@@ -367,9 +366,9 @@ const Home = () => {
       </section>
 
       {/* Gatekeeper Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#000000',
-        padding: '140px 80px',
+        padding: '100px 24px',
         display: 'flex',
         justifyContent: 'center',
         position: 'relative'
@@ -480,9 +479,9 @@ const Home = () => {
       </section>
 
       {/* Final CTA / Application Form */}
-      <section id="application-form" style={{
+      <section id="application-form" className="section-padding" style={{
         background: 'linear-gradient(135deg, #D4AF37 0%, #C5A028 100%)',
-        padding: '140px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center',
         position: 'relative'
@@ -521,10 +520,10 @@ const Home = () => {
             Don't just contact us. Apply for an evaluation.
           </p>
           
-          <form onSubmit={handleSubmit} data-testid="application-form" style={{
+          <form onSubmit={handleSubmit} data-testid="application-form" className="application-form" style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '32px'
+            gap: '20px'
           }}>
             <div>
               <label style={{

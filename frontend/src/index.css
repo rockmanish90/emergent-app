@@ -126,65 +126,187 @@ code {
 }
 
 /* Mobile Responsive Styles */
-@media (max-width: 768px) {
-    /* Global mobile adjustments */
-    .mobile-padding {
-        padding-left: 20px !important;
-        padding-right: 20px !important;
+
+/* Tablet breakpoint */
+@media (max-width: 900px) {
+    /* All sections with 80px padding */
+    section {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
     }
     
-    /* Hero sections */
-    .hero-section {
-        padding: 120px 20px 60px !important;
+    /* Footer */
+    footer {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
     }
     
-    /* Section padding */
-    .section-padding {
-        padding: 60px 20px !important;
-    }
-    
-    /* Grid layouts */
-    .responsive-grid {
-        grid-template-columns: 1fr !important;
-        gap: 24px !important;
-    }
-    
-    /* Typography scaling */
-    .hero-title {
-        font-size: 32px !important;
-        line-height: 1.2 !important;
-    }
-    
-    .section-title {
-        font-size: 28px !important;
-    }
-    
-    /* Form compact spacing */
-    .form-compact {
-        gap: 16px !important;
-    }
-    
-    .form-compact input,
-    .form-compact textarea {
-        padding: 14px 16px !important;
-    }
-    
-    .form-compact label {
-        margin-bottom: 8px !important;
-    }
-    
-    .form-compact button {
-        padding: 16px 32px !important;
-        margin-top: 8px !important;
+    /* Article (blog post) */
+    article {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
     }
 }
 
-@media (max-width: 480px) {
-    .hero-title {
-        font-size: 28px !important;
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+    /* All sections */
+    section {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
     }
     
-    .section-title {
+    /* Hero sections need more top padding for header */
+    .hero-section,
+    section:first-of-type {
+        padding-top: 120px !important;
+        min-height: auto !important;
+    }
+    
+    /* Footer */
+    footer {
+        padding: 40px 24px !important;
+    }
+    
+    /* Article (blog post) */
+    article {
+        padding: 120px 24px 40px !important;
+    }
+    
+    /* Inner content containers */
+    section > div,
+    article > div {
+        padding: 0 !important;
+    }
+    
+    /* Grid layouts - single column */
+    [style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Flex wrap for contact info sections */
+    [style*="flex-wrap: wrap"] {
+        gap: 40px !important;
+    }
+    
+    /* Contact page form container */
+    [style*="minWidth: '350px'"] {
+        min-width: 100% !important;
+    }
+    
+    /* Form padding on contact page */
+    form[style*="padding: '50px'"],
+    form {
+        padding: 32px 24px !important;
+    }
+    
+    /* Reduce form gap */
+    form[style*="gap: '32px'"],
+    form[style*="gap: '28px'"] {
+        gap: 20px !important;
+    }
+    
+    /* Button adjustments */
+    button[style*="padding: '22px 56px'"],
+    button[style*="padding: '18px 40px'"] {
+        padding: 16px 32px !important;
+        width: 100%;
+    }
+    
+    /* Reduce big number stats */
+    [style*="fontSize: '68px'"],
+    [style*="fontSize: '56px'"] {
+        font-size: 48px !important;
+    }
+    
+    /* Checklist items */
+    [style*="padding: '28px 32px'"] {
+        padding: 20px 16px !important;
+    }
+    
+    /* Related posts section */
+    .related-posts-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Blog content */
+    .blog-content {
+        font-size: 16px !important;
+    }
+    
+    .blog-content h2 {
         font-size: 24px !important;
+    }
+    
+    /* CTA in blog post */
+    [style*="padding: '48px'"] {
+        padding: 32px 24px !important;
+    }
+    
+    /* FAQ section */
+    [style*="padding: '40px'"] {
+        padding: 24px 16px !important;
+    }
+}
+
+/* Small mobile breakpoint */
+@media (max-width: 480px) {
+    section {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
+    }
+    
+    .hero-section,
+    section:first-of-type {
+        padding-top: 100px !important;
+    }
+    
+    footer {
+        padding: 32px 16px !important;
+    }
+    
+    article {
+        padding: 100px 16px 32px !important;
+    }
+    
+    /* Form on small screens */
+    form {
+        padding: 24px 16px !important;
+        gap: 16px !important;
+    }
+    
+    /* Input fields */
+    input, textarea {
+        padding: 14px 12px !important;
+        font-size: 16px !important; /* Prevents zoom on iOS */
+    }
+    
+    /* Smaller buttons */
+    button {
+        padding: 14px 24px !important;
+        font-size: 12px !important;
+    }
+    
+    /* Stats numbers */
+    [style*="fontSize: '68px'"],
+    [style*="fontSize: '56px'"],
+    [style*="fontSize: '48px'"] {
+        font-size: 36px !important;
+    }
+    
+    /* Footer links */
+    footer [style*="gap: '40px'"] {
+        gap: 16px 24px !important;
+        justify-content: center;
+    }
+    
+    footer > div {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }
