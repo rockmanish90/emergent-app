@@ -76,6 +76,7 @@ export const getBlogPosts = async () => {
     readTime: post.read_time,
     category: post.category,
     image: post.image,
+    faqs: post.faqs || null,
   }));
 };
 
@@ -103,5 +104,6 @@ export const getBlogBySlug = async (slug) => {
     readTime: post.read_time,
     category: post.category,
     image: post.image,
+    faqs: post.faqs || null,
   };
 };
