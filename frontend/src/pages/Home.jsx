@@ -869,6 +869,7 @@ const Home = () => {
             {[
               { text: 'Home', path: '/' },
               { text: 'About Us', path: '/about' },
+              { text: 'Blog', path: '/blog' },
               { text: 'Contact Us', path: '/contact' },
               { text: 'Privacy Policy', path: '/privacy' },
               { text: 'Terms & Conditions', path: '/terms' }
