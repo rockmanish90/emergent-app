@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Plus, Trash2, Edit2, Eye, X, Save } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Plus, Trash2, Edit2, Eye, X, Save, Code, Type } from 'lucide-react';
 import { toast } from 'sonner';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { getAdminBlogPosts, createBlogPost, updateBlogPost, deleteBlogPost } from '../../../utils/adminApi';
 
 const BlogTab = () => {
@@ -8,6 +10,7 @@ const BlogTab = () => {
   const [loading, setLoading] = useState(true);
   const [showEditor, setShowEditor] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
+  const [isHtmlMode, setIsHtmlMode] = useState(false);
   const [formData, setFormData] = useState({
     slug: '',
     title: '',
@@ -18,6 +21,27 @@ const BlogTab = () => {
     image: '',
     read_time: '5 min read'
   });
+
+  // Quill editor modules configuration
+  const quillModules = useMemo(() => ({
+    toolbar: [
+      [{ 'header': [1, 2, 3, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'indent': '-1' }, { 'indent': '+1' }],
+      [{ 'align': [] }],
+      ['link', 'image'],
+      ['blockquote', 'code-block'],
+      ['clean']
+    ],
+  }), []);
+
+  const quillFormats = [
+    'header', 'bold', 'italic', 'underline', 'strike',
+    'color', 'background', 'list', 'bullet', 'indent',
+    'align', 'link', 'image', 'blockquote', 'code-block'
+  ];
 
   useEffect(() => {
     fetchPosts();
@@ -48,6 +72,10 @@ const BlogTab = () => {
     }
   };
 
+  const handleContentChange = (value) => {
+    setFormData(prev => ({ ...prev, content: value }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -66,6 +94,7 @@ const BlogTab = () => {
       }
       setShowEditor(false);
       setEditingPost(null);
+      setIsHtmlMode(false);
       resetForm();
       fetchPosts();
     } catch (error) {
@@ -85,6 +114,7 @@ const BlogTab = () => {
       image: post.image,
       read_time: post.read_time
     });
+    setIsHtmlMode(false);
     setShowEditor(true);
   };
 
@@ -116,7 +146,12 @@ const BlogTab = () => {
   const openNewPost = () => {
     setEditingPost(null);
     resetForm();
+    setIsHtmlMode(false);
     setShowEditor(true);
+  };
+
+  const toggleEditorMode = () => {
+    setIsHtmlMode(!isHtmlMode);
   };
 
   if (loading) {
@@ -312,6 +347,7 @@ const BlogTab = () => {
               onClick={() => {
                 setShowEditor(false);
                 setEditingPost(null);
+                setIsHtmlMode(false);
                 resetForm();
               }}
               style={{
@@ -425,16 +461,77 @@ const BlogTab = () => {
             </div>
 
             <div style={{ marginBottom: '30px' }}>
-              <label style={labelStyle}>Content * (HTML supported)</label>
-              <textarea
-                name="content"
-                value={formData.content}
-                onChange={handleInputChange}
-                required
-                rows={15}
-                style={{ ...inputStyle, resize: 'vertical', fontFamily: 'monospace' }}
-                placeholder="<p>Your blog content here...</p>"
-              />
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '12px'
+              }}>
+                <label style={{ ...labelStyle, marginBottom: 0 }}>Content *</label>
+                <button
+                  type="button"
+                  onClick={toggleEditorMode}
+                  data-testid="toggle-editor-mode"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '8px 14px',
+                    background: isHtmlMode ? 'rgba(212, 175, 55, 0.2)' : 'rgba(255, 255, 255, 0.1)',
+                    border: isHtmlMode ? '1px solid #D4AF37' : '1px solid rgba(255, 255, 255, 0.2)',
+                    color: isHtmlMode ? '#D4AF37' : '#9CA3AF',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  {isHtmlMode ? (
+                    <>
+                      <Type size={14} />
+                      Switch to Rich Text
+                    </>
+                  ) : (
+                    <>
+                      <Code size={14} />
+                      Switch to HTML
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {isHtmlMode ? (
+                <textarea
+                  name="content"
+                  value={formData.content}
+                  onChange={handleInputChange}
+                  required
+                  rows={20}
+                  style={{ 
+                    ...inputStyle, 
+                    resize: 'vertical', 
+                    fontFamily: "'Fira Code', 'Courier New', monospace",
+                    fontSize: '13px',
+                    lineHeight: '1.6'
+                  }}
+                  placeholder="<p>Your blog content here...</p>"
+                />
+              ) : (
+                <div className="quill-editor-wrapper">
+                  <ReactQuill
+                    theme="snow"
+                    value={formData.content}
+                    onChange={handleContentChange}
+                    modules={quillModules}
+                    formats={quillFormats}
+                    placeholder="Start writing your blog post..."
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      minHeight: '400px'
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             <button
@@ -458,6 +555,89 @@ const BlogTab = () => {
           </form>
         </div>
       )}
+
+      {/* Custom styles for Quill editor */}
+      <style>
+        {`
+          .quill-editor-wrapper .ql-container {
+            min-height: 350px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+          }
+          .quill-editor-wrapper .ql-editor {
+            min-height: 350px;
+            padding: 20px;
+          }
+          .quill-editor-wrapper .ql-toolbar {
+            background: #f8f9fa;
+            border-color: rgba(0, 0, 0, 0.1);
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+          }
+          .quill-editor-wrapper .ql-container {
+            border-color: rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+          }
+          .quill-editor-wrapper .ql-editor h1 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+          }
+          .quill-editor-wrapper .ql-editor h2 {
+            font-size: 1.5em;
+            margin-bottom: 0.5em;
+            color: #D4AF37;
+          }
+          .quill-editor-wrapper .ql-editor h3 {
+            font-size: 1.25em;
+            margin-bottom: 0.5em;
+          }
+          .quill-editor-wrapper .ql-editor p {
+            margin-bottom: 1em;
+            line-height: 1.8;
+          }
+          .quill-editor-wrapper .ql-editor ul,
+          .quill-editor-wrapper .ql-editor ol {
+            margin-bottom: 1em;
+            padding-left: 1.5em;
+          }
+          .quill-editor-wrapper .ql-editor li {
+            margin-bottom: 0.5em;
+          }
+          .quill-editor-wrapper .ql-editor blockquote {
+            border-left: 4px solid #D4AF37;
+            padding-left: 16px;
+            margin: 1em 0;
+            font-style: italic;
+            color: #555;
+          }
+          .quill-editor-wrapper .ql-snow .ql-picker {
+            color: #333;
+          }
+          .quill-editor-wrapper .ql-snow .ql-stroke {
+            stroke: #333;
+          }
+          .quill-editor-wrapper .ql-snow .ql-fill {
+            fill: #333;
+          }
+          .quill-editor-wrapper .ql-snow.ql-toolbar button:hover,
+          .quill-editor-wrapper .ql-snow .ql-toolbar button:hover {
+            color: #D4AF37;
+          }
+          .quill-editor-wrapper .ql-snow.ql-toolbar button:hover .ql-stroke,
+          .quill-editor-wrapper .ql-snow .ql-toolbar button:hover .ql-stroke {
+            stroke: #D4AF37;
+          }
+          .quill-editor-wrapper .ql-snow.ql-toolbar button.ql-active,
+          .quill-editor-wrapper .ql-snow .ql-toolbar button.ql-active {
+            color: #D4AF37;
+          }
+          .quill-editor-wrapper .ql-snow.ql-toolbar button.ql-active .ql-stroke,
+          .quill-editor-wrapper .ql-snow .ql-toolbar button.ql-active .ql-stroke {
+            stroke: #D4AF37;
+          }
+        `}
+      </style>
     </div>
   );
 };
