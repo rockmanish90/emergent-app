@@ -4,6 +4,7 @@ import { submitApplication } from '../utils/mock';
 import { toast } from 'sonner';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CTASection from '../components/CTASection';
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -767,6 +768,9 @@ const Home = () => {
           </form>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
 
       {/* Footer */}
       <Footer />
