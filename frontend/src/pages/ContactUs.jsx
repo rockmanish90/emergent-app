@@ -252,14 +252,122 @@ const ContactUs = () => {
                   textTransform: 'uppercase',
                   letterSpacing: '1.5px'
                 }}>
-                  Email *
+                  Company Name *
+                </label>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleInputChange}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Annual Turnover (in Crores ₹)
+                </label>
+                <input
+                  type="text"
+                  name="annualTurnover"
+                  value={formData.annualTurnover}
+                  onChange={handleInputChange}
+                  placeholder="e.g., 75"
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Mobile Number *
+                </label>
+                <input
+                  type="tel"
+                  name="mobileNumber"
+                  value={formData.mobileNumber}
+                  onChange={handleInputChange}
+                  required
+                  placeholder="+91 98765 43210"
+                  style={{
+                    width: '100%',
+                    padding: '14px 18px',
+                    fontSize: '15px',
+                    fontFamily: "'Inter', sans-serif",
+                    border: '2px solid rgba(0, 0, 0, 0.15)',
+                    background: '#FFFFFF',
+                    color: '#000000',
+                    outline: 'none',
+                    transition: 'all 0.3s ease',
+                    boxSizing: 'border-box'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#000000'}
+                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
+                />
+              </div>
+
+              <div>
+                <label style={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: '11px',
+                  fontWeight: '700',
+                  color: '#000000',
+                  display: 'block',
+                  marginBottom: '10px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1.5px'
+                }}>
+                  Email
                 </label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  required
                   style={{
                     width: '100%',
                     padding: '14px 18px',
@@ -288,84 +396,12 @@ const ContactUs = () => {
                   textTransform: 'uppercase',
                   letterSpacing: '1.5px'
                 }}>
-                  Phone *
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  required
-                  style={{
-                    width: '100%',
-                    padding: '14px 18px',
-                    fontSize: '15px',
-                    fontFamily: "'Inter', sans-serif",
-                    border: '2px solid rgba(0, 0, 0, 0.15)',
-                    background: '#FFFFFF',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'all 0.3s ease',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#000000'}
-                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
-                />
-              </div>
-
-              <div>
-                <label style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '11px',
-                  fontWeight: '700',
-                  color: '#000000',
-                  display: 'block',
-                  marginBottom: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1.5px'
-                }}>
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  style={{
-                    width: '100%',
-                    padding: '14px 18px',
-                    fontSize: '15px',
-                    fontFamily: "'Inter', sans-serif",
-                    border: '2px solid rgba(0, 0, 0, 0.15)',
-                    background: '#FFFFFF',
-                    color: '#000000',
-                    outline: 'none',
-                    transition: 'all 0.3s ease',
-                    boxSizing: 'border-box'
-                  }}
-                  onFocus={(e) => e.target.style.borderColor = '#000000'}
-                  onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
-                />
-              </div>
-
-              <div>
-                <label style={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: '11px',
-                  fontWeight: '700',
-                  color: '#000000',
-                  display: 'block',
-                  marginBottom: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1.5px'
-                }}>
-                  Message *
+                  Message
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  required
                   rows="5"
                   style={{
                     width: '100%',
