@@ -66,6 +66,7 @@ const Header = () => {
       {/* CTA Button */}
       <button 
         onClick={handleApplyNow}
+        className="header-cta-btn"
         style={{
           background: 'transparent',
           color: '#D4AF37',
@@ -77,7 +78,8 @@ const Header = () => {
           transition: 'all 0.3s ease',
           letterSpacing: '1.5px',
           textTransform: 'uppercase',
-          fontFamily: "'Inter', sans-serif"
+          fontFamily: "'Inter', sans-serif'",
+          whiteSpace: 'nowrap'
         }}
         onMouseEnter={(e) => {
           e.target.style.background = '#D4AF37';
