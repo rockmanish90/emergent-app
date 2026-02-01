@@ -283,21 +283,21 @@ const Home = () => {
           </p>
           
           {/* Data Display Grid */}
-          <div style={{
+          <div className="stats-grid" style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '48px',
-            marginBottom: '80px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '32px',
+            marginBottom: '60px'
           }}>
             {[
               { company: 'Indian Emulsifiers', times: '460' },
               { company: 'Meson Valves India', times: '173' },
               { company: 'Transteel Seating', times: '49' }
             ].map((item, index) => (
-              <div key={index} style={{
+              <div key={index} className="stat-card" style={{
                 background: 'rgba(255, 255, 255, 0.03)',
                 border: '1px solid rgba(212, 175, 55, 0.2)',
-                padding: '56px 40px',
+                padding: '40px 24px',
                 textAlign: 'center',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                 position: 'relative'
@@ -313,9 +313,9 @@ const Home = () => {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
               >
-                <div style={{
+                <div className="stat-number" style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: '68px',
+                  fontSize: 'clamp(42px, 8vw, 68px)',
                   fontWeight: '700',
                   color: '#D4AF37',
                   marginBottom: '16px',
@@ -408,24 +408,24 @@ const Home = () => {
           </p>
           
           {/* Checklist */}
-          <div style={{
+          <div className="checklist" style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '20px',
-            marginBottom: '70px',
+            gap: '16px',
+            marginBottom: '50px',
             maxWidth: '700px',
-            margin: '0 auto 70px'
+            margin: '0 auto 50px'
           }}>
             {[
               'Strong financial track record and growth trajectory.',
               'Net Profit Margins above 10%.',
               'Consistent Year-on-Year Growth.'
             ].map((item, index) => (
-              <div key={index} style={{
+              <div key={index} className="checklist-item" style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '24px',
-                padding: '28px 32px',
+                gap: '16px',
+                padding: '20px 16px',
                 background: 'rgba(255, 255, 255, 0.02)',
                 border: '1px solid rgba(212, 175, 55, 0.15)',
                 transition: 'all 0.3s ease'
@@ -719,7 +719,7 @@ const Home = () => {
                 background: '#000000',
                 color: '#FFFFFF',
                 border: 'none',
-                padding: '22px 56px',
+                padding: '18px 40px',
                 fontSize: '13px',
                 fontWeight: '700',
                 cursor: isSubmitting ? 'not-allowed' : 'pointer',
@@ -727,9 +727,10 @@ const Home = () => {
                 letterSpacing: '2px',
                 textTransform: 'uppercase',
                 fontFamily: "'Inter', sans-serif",
-                marginTop: '24px',
+                marginTop: '16px',
                 opacity: isSubmitting ? 0.7 : 1,
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
+                width: '100%'
               }}
               onMouseEnter={(e) => {
                 if (!isSubmitting) {
