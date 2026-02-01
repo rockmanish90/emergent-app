@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
-import Spline from '@splinetool/react-spline';
 import { submitApplication } from '../utils/mock';
 import { toast } from 'sonner';
 
