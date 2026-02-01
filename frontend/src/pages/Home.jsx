@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
-import { submitApplication } from '../utils/mock';
+import { submitApplication } from '../utils/api';
 import { toast } from 'sonner';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

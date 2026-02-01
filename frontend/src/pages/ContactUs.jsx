@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import { toast } from 'sonner';
-import { submitApplication } from '../utils/mock';
+import { submitContact } from '../utils/api';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -34,10 +34,11 @@ const ContactUs = () => {
     setIsSubmitting(true);
     
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await submitContact(formData);
       toast.success('Thank you! We will get back to you within 24 hours.');
       setFormData({ name: '', companyName: '', annualTurnover: '', mobileNumber: '', email: '', message: '' });
     } catch (error) {
+      console.error('Contact form error:', error);
       toast.error('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
