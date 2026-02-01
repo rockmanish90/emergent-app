@@ -11,6 +11,7 @@ const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: '',
     companyName: '',
+    annualTurnover: '',
     mobileNumber: '',
     email: '',
     message: ''
@@ -36,8 +37,7 @@ const ContactUs = () => {
     try {
       await submitContact(formData);
       toast.success('Thank you! We will get back to you within 24 hours.');
-      setFormData({ name: '', companyName: '', mobileNumber: '', email: '', message: '' });
-      //annualTurnover: ''
+      setFormData({ name: '', companyName: '', annualTurnover: '', mobileNumber: '', email: '', message: '' });
     } catch (error) {
       console.error('Contact form error:', error);
       toast.error('Something went wrong. Please try again.');
@@ -298,7 +298,7 @@ const ContactUs = () => {
                 <input
                   type="text"
                   name="annualTurnover"
-                  value={formData.annualTurnover}
+                  value='NA'
                   onChange={handleInputChange}
                   placeholder="e.g., 75"
                   style={{
@@ -317,7 +317,7 @@ const ContactUs = () => {
                   onBlur={(e) => e.target.style.borderColor = 'rgba(0, 0, 0, 0.15)'}
                 />
               </div>
-
+              
               <div>
                 <label style={{
                   fontFamily: "'Inter', sans-serif",
@@ -462,5 +462,5 @@ const ContactUs = () => {
     </div>
   );
 };
-
+//{formData.annualTurnover}
 export default ContactUs;
