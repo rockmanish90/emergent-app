@@ -16,6 +16,15 @@ from datetime import datetime, timezone, timedelta
 
 from email_service import send_contact_notification, send_application_notification
 
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # In production, replace "*" with your Railway frontend URL
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
