@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CTASection from '../components/CTASection';
 
 const TermsConditions = () => {
   const navigate = useNavigate();
@@ -339,6 +340,9 @@ const TermsConditions = () => {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
 
       {/* Footer */}
       <Footer />

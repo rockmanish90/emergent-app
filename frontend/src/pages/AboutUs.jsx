@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CTASection from '../components/CTASection';
 
 const AboutUs = () => {
   const navigate = useNavigate();
@@ -704,6 +705,9 @@ const AboutUs = () => {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
 
       {/* Footer */}
       <Footer />

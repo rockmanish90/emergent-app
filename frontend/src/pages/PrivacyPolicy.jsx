@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CTASection from '../components/CTASection';
 
 const PrivacyPolicy = () => {
   const navigate = useNavigate();
@@ -247,6 +248,9 @@ const PrivacyPolicy = () => {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
 
       {/* Footer */}
       <Footer />

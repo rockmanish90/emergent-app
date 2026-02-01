@@ -4,6 +4,7 @@ import { ArrowRight, Clock } from 'lucide-react';
 import { blogPosts } from '../utils/blogData';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import CTASection from '../components/CTASection';
 
 const BlogList = () => {
   const navigate = useNavigate();
@@ -204,6 +205,9 @@ const BlogList = () => {
           </div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
 
       {/* Footer */}
       <Footer />
