@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[services.backend]
+source = "backend"
+# Railway will try to auto-detect, but this forces it to use your file
+startCommand = "python server.py" 
+healthcheckPath = "/docs"
+
+[services.frontend]
+source = "frontend"
