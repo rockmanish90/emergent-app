@@ -418,7 +418,7 @@ const Home = () => {
           }}>
             {[
               'Strong financial track record and growth trajectory.',
-              'Net Profit Margins above 10%.',
+              'Good Profit margins.',
               'Consistent Year-on-Year Growth.'
             ].map((item, index) => (
               <div key={index} className="checklist-item" style={{
