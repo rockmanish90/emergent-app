@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ArrowLeft, Calendar, User } from 'lucide-react';
 import { getBlogBySlug, blogPosts } from '../utils/blogData';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const BlogPost = () => {
   const { slug } = useParams();
