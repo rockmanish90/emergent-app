@@ -3,18 +3,18 @@ export const blogPosts = [
   {
     id: 1,
     slug: 'understanding-ipo-readiness-checklist',
-    title: 'Understanding IPO Readiness: A Comprehensive Checklist for Indian SMEs',
+    title: 'Understanding IPO Readiness: A Comprehensive Checklist for Indian Companies',
     excerpt: 'Before taking your company public, there are critical milestones you must achieve. This comprehensive guide breaks down the essential requirements for a successful IPO journey.',
     content: `
       <p>Taking your company public is one of the most significant decisions you'll make as a business owner. It's not just about raising capital—it's about transforming your business into a public market entity that can attract institutional investors and create lasting value.</p>
 
       <h2>Financial Requirements</h2>
-      <p>The foundation of IPO readiness lies in your financial performance. For SME IPOs in India, you need:</p>
+      <p>The foundation of IPO readiness lies in your financial performance. Whether you're planning an SME or Mainboard IPO, you need:</p>
       <ul>
         <li>Consistent profitability over the last three years</li>
-        <li>Net profit margins above 10%</li>
-        <li>Annual turnover between ₹50 Crores and ₹200 Crores</li>
+        <li>Strong net profit margins (typically above 10%)</li>
         <li>Clean audited financials with no major qualifications</li>
+        <li>Robust financial controls and governance systems</li>
       </ul>
 
       <h2>Corporate Governance</h2>
@@ -44,7 +44,7 @@ export const blogPosts = [
         <li>Strong intellectual property protection</li>
       </ul>
 
-      <p>At Rushabh Ventures, we guide companies through each of these critical areas, ensuring they're not just IPO-ready, but positioned for market success that exceeds expectations.</p>
+      <p>At Rushabh Ventures, we guide companies through each of these critical areas, ensuring they're not just IPO-ready, but positioned for market success that exceeds expectations—whether it's an SME or Mainboard listing.</p>
     `,
     author: 'Rushabh Ventures Team',
     date: '2025-01-25',
@@ -55,8 +55,8 @@ export const blogPosts = [
   {
     id: 2,
     slug: 'valuation-strategies-sme-ipo',
-    title: 'Valuation Strategies That Maximize Your SME IPO Success',
-    excerpt: 'Getting the valuation right is crucial for IPO success. Learn the sophisticated strategies that top-performing SMEs use to achieve premium valuations.',
+    title: 'Valuation Strategies That Maximize Your IPO Success',
+    excerpt: 'Getting the valuation right is crucial for IPO success. Learn the sophisticated strategies that top-performing companies use to achieve premium valuations.',
     content: `
       <p>Valuation isn't just about numbers—it's about perception, positioning, and presenting your company's potential to the market. The difference between a mediocre IPO and a spectacular one often comes down to how effectively you communicate your value.</p>
 
@@ -96,7 +96,7 @@ export const blogPosts = [
         <li>Professional investor-ready operations</li>
       </ul>
 
-      <p>Our approach at Rushabh Ventures has resulted in valuations that consistently exceed client expectations, with subscription rates that prove the market's confidence in our positioning.</p>
+      <p>Our approach at Rushabh Ventures has resulted in valuations that consistently exceed client expectations across both SME and Mainboard listings, with subscription rates that prove the market's confidence in our positioning.</p>
     `,
     author: 'Rushabh Ventures Team',
     date: '2025-01-20',
@@ -162,15 +162,15 @@ export const blogPosts = [
     title: 'Navigating SEBI Regulations: A Practical Guide for First-Time Issuers',
     excerpt: 'SEBI regulations can seem daunting for first-time issuers. We break down the key requirements and show you how to navigate the regulatory landscape with confidence.',
     content: `
-      <p>The Securities and Exchange Board of India (SEBI) has established comprehensive regulations to protect investors and ensure market integrity. Understanding these regulations is crucial for a successful IPO journey.</p>
+      <p>The Securities and Exchange Board of India (SEBI) has established comprehensive regulations to protect investors and ensure market integrity. Understanding these regulations is crucial for a successful IPO journey, whether you're listing on the SME platform or Mainboard.</p>
 
-      <h2>Key SEBI Requirements for SME IPOs</h2>
-      <p>SEBI's SME platform has specific requirements that differ from mainboard listings:</p>
+      <h2>Key SEBI Requirements</h2>
+      <p>SEBI's regulatory framework covers both SME and Mainboard listings, each with specific requirements:</p>
       <ul>
-        <li>Minimum post-issue paid-up capital of ₹3 crores</li>
-        <li>Maximum issue size of ₹25 crores</li>
+        <li>Comprehensive disclosure requirements</li>
         <li>Mandatory merchant banker engagement</li>
-        <li>Market making for at least 3 years</li>
+        <li>Due diligence and compliance documentation</li>
+        <li>Investor protection mechanisms</li>
       </ul>
 
       <h2>Documentation Requirements</h2>
@@ -183,7 +183,7 @@ export const blogPosts = [
       </ul>
 
       <h2>Timeline and Process</h2>
-      <p>A typical SME IPO timeline spans 4-6 months:</p>
+      <p>A typical IPO timeline spans 4-6 months:</p>
       <ul>
         <li>Month 1-2: Due diligence and documentation</li>
         <li>Month 3: DRHP filing and SEBI review</li>
@@ -200,7 +200,7 @@ export const blogPosts = [
         <li>Inadequate corporate governance structures</li>
       </ul>
 
-      <p>Our team at Rushabh Ventures has deep expertise in SEBI regulations and works closely with leading legal advisors to ensure flawless compliance throughout your IPO journey.</p>
+      <p>Our team at Rushabh Ventures has deep expertise in SEBI regulations across both SME and Mainboard listings, and works closely with leading legal advisors to ensure flawless compliance throughout your IPO journey.</p>
     `,
     author: 'Rushabh Ventures Team',
     date: '2025-01-10',

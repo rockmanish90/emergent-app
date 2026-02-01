@@ -439,7 +439,7 @@ const Home = () => {
             margin: '0 auto 70px'
           }}>
             {[
-              'Annual Turnover between ₹50 Cr and ₹200 Cr.',
+              'Strong financial track record and growth trajectory.',
               'Net Profit Margins above 10%.',
               'Consistent Year-on-Year Growth.'
             ].map((item, index) => (

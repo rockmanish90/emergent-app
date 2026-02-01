@@ -86,7 +86,7 @@ const TermsConditions = () => {
                 fontWeight: '400',
                 letterSpacing: '0.2px'
               }}>
-                Rushabh Ventures provides IPO advisory and consultancy services to eligible SME companies. Our services include strategic planning, documentation assistance, investor relations, and regulatory compliance support. The specific scope of services will be detailed in a separate engagement agreement.
+                Rushabh Ventures provides IPO advisory and consultancy services to eligible SME and Mainboard companies. Our services include strategic planning, documentation assistance, investor relations, and regulatory compliance support. The specific scope of services will be detailed in a separate engagement agreement.
               </p>
             </div>
 
@@ -109,7 +109,7 @@ const TermsConditions = () => {
                 fontWeight: '400',
                 letterSpacing: '0.2px'
               }}>
-                Our services are available to companies meeting specific criteria, including but not limited to: annual turnover between ₹50 Crores and ₹200 Crores, net profit margins above 10%, and consistent year-on-year growth. We reserve the right to accept or decline any application at our sole discretion.
+                Our services are available to companies meeting specific criteria, including but not limited to: strong financial track record, net profit margins above 10%, and consistent year-on-year growth. We work with both SME and Mainboard companies seeking to go public. We reserve the right to accept or decline any application at our sole discretion.
               </p>
             </div>
 
