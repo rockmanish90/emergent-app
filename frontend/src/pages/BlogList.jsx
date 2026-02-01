@@ -9,22 +9,20 @@ import CTASection from '../components/CTASection';
 
 const BlogList = () => {
   const navigate = useNavigate();
-  const [blogPosts, setBlogPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Initialize with fallback data immediately - no loading state
+  const [blogPosts, setBlogPosts] = useState(fallbackPosts);
 
   useEffect(() => {
+    // Fetch fresh data in background, update if different
     const fetchPosts = async () => {
       try {
         const posts = await getBlogPosts();
-        setBlogPosts(posts.length > 0 ? posts : fallbackPosts);
+        if (posts.length > 0) {
+          setBlogPosts(posts);
+        }
       } catch (err) {
         console.error('Failed to fetch blog posts:', err);
-        // Fallback to static data if API fails
-        setBlogPosts(fallbackPosts);
-        setError('Using cached data');
-      } finally {
-        setLoading(false);
+        // Keep using fallback data silently
       }
     };
 
