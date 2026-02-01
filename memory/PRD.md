@@ -1,7 +1,7 @@
 # Rushabh Ventures - Landing Page PRD
 
 ## Original Problem Statement
-Build a high-converting landing page for Rushabh Ventures, an elite IPO consultancy that helps high-growth Indian SME companies go public. The target audience is business owners/promoters with ₹50-200 Cr annual turnover who want legacy and liquid wealth through IPO.
+Build a high-converting landing page for Rushabh Ventures, an elite IPO consultancy that helps high-growth Indian SME and Mainboard companies go public. The target audience is business owners/promoters with ₹50-200 Cr annual turnover who want legacy and liquid wealth through IPO.
 
 **Design Standard**: Match $20,000+ agency-quality websites with luxury "Executive Midnight" aesthetic inspired by private cigar lounges and high-end investment banks.
 
@@ -18,73 +18,67 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
 - **Enhancement**: Grain texture overlay, decorative gold lines
 
 ## User Personas
-- **Primary**: Indian SME Business Owners & Promoters
+- **Primary**: Indian SME & Mainboard Business Owners/Promoters
 - **Annual Turnover**: ₹50 Cr - ₹200 Cr
 - **Goals**: National visibility, legacy building, wealth liquidity
 - **Pain Points**: Feeling "invisible" in public markets, wealth trapped in business
 
 ## What's Been Implemented
 
-### Date: January 31 - February 1, 2025
-
-#### Phase 1 - Initial Build (Complete)
+### Phase 1 - Initial Build (Complete)
 - ✅ Single-page landing with all 6 sections
 - ✅ "Executive Midnight" luxury design system
 - ✅ Google Fonts integration (Playfair Display + Inter)
 - ✅ Fully responsive design with mobile optimization
 - ✅ Application form with validation
-- ✅ Mock data handling (localStorage)
 - ✅ Toast notifications for form feedback
 - ✅ Smooth scroll behavior
 
-#### Phase 2 - Design Refinement (Complete)
+### Phase 2 - Design Refinement (Complete)
 - ✅ Fixed luxury navigation with RUSHABH VENTURES logo
 - ✅ Gradient backgrounds for depth (navy to darker navy)
 - ✅ Subtle grain texture overlay across site
 - ✅ Decorative gold accent lines
-- ✅ Enhanced typography hierarchy (larger, bolder, better spacing)
-- ✅ Refined form section with luxury styling
+- ✅ Enhanced typography hierarchy
 - ✅ Improved hover animations with cubic-bezier easing
-- ✅ Better whitespace and generous padding (80px+)
-- ✅ Enhanced button designs with shadows
-- ✅ Refined footer with better link styling
 
-#### Phase 3 - Hero Layout Update (Complete)
+### Phase 3 - Hero Layout Update (Complete)
 - ✅ Changed hero from split layout to centered layout
 - ✅ Removed 3D Spline component per client request
 - ✅ Full-width centered content with text-center alignment
 - ✅ Button styled with brackets: "[ UNLOCK MY ROADMAP ]"
-- ✅ Maintained all existing colors, fonts, and navigation
 
-#### Phase 4 - Additional Pages (Complete)
-- ✅ **About Us Page** (/about) - Hero banner with company story and approach sections
-- ✅ **Contact Us Page** (/contact) - Split layout with contact info and working form
-- ✅ **Privacy Policy** (/privacy) - Professional 8-section privacy policy
-- ✅ **Terms & Conditions** (/terms) - Comprehensive 12-section terms document
-- ✅ Updated footer navigation on all pages
+### Phase 4 - Additional Pages (Complete)
+- ✅ **About Us Page** (/about) - Hero banner with company story
+- ✅ **Contact Us Page** (/contact) - Contact form with info
+- ✅ **Privacy Policy** (/privacy) - Professional 8-section policy
+- ✅ **Terms & Conditions** (/terms) - Comprehensive 12-section terms
 
-#### Phase 5 - Blog Section (Complete)
+### Phase 5 - Blog Section (Complete)
 - ✅ **Blog List Page** (/blog) - Grid layout with blog post cards
-- ✅ **Blog Post Page** (/blog/:slug) - Individual article layout with hero image
-- ✅ Mock blog data with 4 comprehensive articles:
-  - Understanding IPO Readiness Checklist
-  - Valuation Strategies for SME IPOs
-  - Building Strong Investor Relations Post-IPO
-  - Navigating SEBI Regulations
-- ✅ Blog features:
-  - Category badges
-  - Read time indicators
-  - Author information
-  - Featured images from Unsplash
-  - Related articles section
-  - CTA section in blog posts
-  - Hover animations on cards
-- ✅ Blog navigation added to footer across all pages
+- ✅ **Blog Post Page** (/blog/:slug) - Individual article layout
+- ✅ 4 blog posts with IPO-focused content
+- ✅ Category badges, read time indicators
+- ✅ Related articles section
+
+### Phase 6 - Backend Integration (Complete - Feb 1, 2025)
+- ✅ **Contact Form API** (`POST /api/contact`) - Saves to MongoDB
+- ✅ **Application Form API** (`POST /api/application`) - Saves to MongoDB
+- ✅ **Email Notifications** - Gmail SMTP integration sends notifications to justb2bemails@gmail.com
+- ✅ **Blog CRUD API** - Full REST API for blog management
+  - `GET /api/blog` - List all posts
+  - `GET /api/blog/:slug` - Get single post
+  - `POST /api/blog` - Create post
+  - `PUT /api/blog/:slug` - Update post
+  - `DELETE /api/blog/:slug` - Delete post
+- ✅ **Header Navigation** - Added nav links (Home, About, Blog, Contact)
+- ✅ **Mobile Menu** - Responsive hamburger menu for mobile devices
+- ✅ **Data-testid Attributes** - Added for better testability
 
 ## Site Structure
 
 ### Pages
-1. **Home** (/) - Main landing page with hero and form
+1. **Home** (/) - Main landing page with hero and application form
 2. **About Us** (/about) - Company story and approach
 3. **Contact Us** (/contact) - Contact form and information
 4. **Blog** (/blog) - Blog listing page
@@ -93,50 +87,141 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
 7. **Terms & Conditions** (/terms) - Terms document
 
 ### Navigation
-- Fixed top navigation on all pages
+- Fixed top navigation with links: Home, About, Blog, Contact
+- Active page indicator (gold underline)
+- Mobile hamburger menu for responsive design
 - Footer navigation with all page links
-- Breadcrumb navigation on blog posts
 
 ## Technical Stack
-- React 19
-- React Router DOM (for navigation)
-- Tailwind CSS
-- Sonner (toast notifications)
-- Lucide React (icons)
+- **Frontend**: React 19, React Router DOM, Tailwind CSS, Lucide React
+- **Backend**: FastAPI, Motor (async MongoDB driver)
+- **Database**: MongoDB
+- **Email**: Gmail SMTP with App Password
 
-## Files Created/Modified
+## API Endpoints
 
-### Pages
-- `/app/frontend/src/pages/Home.jsx`
-- `/app/frontend/src/pages/AboutUs.jsx`
-- `/app/frontend/src/pages/ContactUs.jsx`
-- `/app/frontend/src/pages/PrivacyPolicy.jsx`
-- `/app/frontend/src/pages/TermsConditions.jsx`
-- `/app/frontend/src/pages/BlogList.jsx`
-- `/app/frontend/src/pages/BlogPost.jsx`
+### Contact/Application
+- `POST /api/contact` - Submit contact form (sends email notification)
+- `GET /api/contacts` - List all contacts
+- `POST /api/application` - Submit IPO application (sends email notification)
+- `GET /api/applications` - List all applications
 
-### Utils
-- `/app/frontend/src/utils/mock.js` - Form submission handler
-- `/app/frontend/src/utils/blogData.js` - Blog data and helpers
+### Blog
+- `GET /api/blog` - List all blog posts
+- `GET /api/blog/:slug` - Get single blog post by slug
+- `POST /api/blog` - Create new blog post
+- `PUT /api/blog/:slug` - Update existing blog post
+- `DELETE /api/blog/:slug` - Delete blog post
 
-### Configuration
-- Updated `/app/frontend/src/App.js` - All routes
-- Updated `/app/frontend/public/index.html` - Fonts and meta
-- Updated `/app/frontend/src/App.css` - Responsive styles
-- Updated `/app/frontend/src/index.css` - Global styles
+## Database Schema
+
+### contacts
+```javascript
+{
+  id: String (UUID),
+  name: String,
+  company_name: String,
+  annual_turnover: String (optional),
+  mobile_number: String,
+  email: String (optional),
+  message: String (optional),
+  created_at: DateTime,
+  status: String ("pending")
+}
+```
+
+### applications
+```javascript
+{
+  id: String (UUID),
+  name: String,
+  company_name: String,
+  annual_turnover: String,
+  mobile_number: String,
+  created_at: DateTime,
+  status: String ("pending")
+}
+```
+
+### blog_posts
+```javascript
+{
+  id: String (UUID),
+  slug: String (unique),
+  title: String,
+  excerpt: String,
+  content: String (HTML),
+  author: String,
+  date: String,
+  read_time: String,
+  category: String,
+  image: String (URL)
+}
+```
+
+## File Structure
+```
+/app
+├── backend/
+│   ├── server.py           # FastAPI app with all endpoints
+│   ├── email_service.py    # Gmail SMTP service
+│   ├── seed_data.py        # Blog data seeder
+│   ├── requirements.txt
+│   └── .env
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   │   ├── Header.jsx    # Navigation with mobile menu
+    │   │   ├── Footer.jsx
+    │   │   └── CTASection.jsx
+    │   ├── pages/
+    │   │   ├── Home.jsx
+    │   │   ├── AboutUs.jsx
+    │   │   ├── ContactUs.jsx
+    │   │   ├── PrivacyPolicy.jsx
+    │   │   ├── TermsConditions.jsx
+    │   │   ├── BlogList.jsx
+    │   │   └── BlogPost.jsx
+    │   ├── utils/
+    │   │   ├── api.js        # API service functions
+    │   │   ├── blogData.js   # Fallback blog data
+    │   │   └── mock.js       # Legacy mock (deprecated)
+    │   ├── App.js
+    │   └── index.css
+    └── .env
+```
+
+## Environment Variables
+
+### Backend (.env)
+```
+MONGO_URL="mongodb://localhost:27017"
+DB_NAME="test_database"
+CORS_ORIGINS="*"
+GMAIL_USER="justb2bemails@gmail.com"
+GMAIL_APP_PASSWORD="[REDACTED]"
+NOTIFICATION_EMAIL="justb2bemails@gmail.com"
+```
+
+### Frontend (.env)
+```
+REACT_APP_BACKEND_URL=https://venture-partners-1.preview.emergentagent.com
+```
 
 ## Prioritized Backlog
 
-### P0 Features (Not Implemented)
-- Backend API for form submissions (application + contact)
-- MongoDB storage for applications and contact inquiries
-- Email notifications to admin on new submissions
-- Admin dashboard to view applications and contacts
-- Blog CMS integration (for easy content management)
+### P0 - Completed
+- ✅ Backend API for form submissions
+- ✅ MongoDB storage for contacts/applications
+- ✅ Email notifications on new submissions
+- ✅ Blog CRUD API
 
-### P1 Features (Future Enhancements)
+### P1 Features (Next Priority)
+- Admin dashboard to view applications and contacts
+- Blog CMS interface (create/edit/delete posts via UI)
 - Analytics tracking (Google Analytics/PostHog)
-- A/B testing for different headlines
+
+### P2 Features (Future Enhancements)
 - Lead scoring based on turnover/margins
 - Automated follow-up email sequences
 - Calendar integration for booking consultations
@@ -147,7 +232,7 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
 - Blog search functionality
 - Social sharing buttons for blog posts
 
-### P2 Features (Nice-to-Have)
+### P3 Features (Nice-to-Have)
 - Case study detail pages for each IPO success
 - Video testimonials from past clients
 - Resources section (whitepapers, guides)
@@ -157,21 +242,6 @@ Build a high-converting landing page for Rushabh Ventures, an elite IPO consulta
 - Author pages
 - Blog RSS feed
 
-## Next Tasks
-1. Build backend API (FastAPI) for form submissions
-2. Integrate MongoDB for storing applications and contacts
-3. Remove mock data and connect frontend to backend
-4. Add email notifications for new submissions
-5. Build admin dashboard to review applications
-6. Add blog CMS (Strapi/Ghost) or build custom admin
-7. Deploy to production
-
-## Technical Notes
-- All forms currently use localStorage (MOCKED)
-- All interactions are client-side only
-- No backend integration yet
-- Blog data is static (mock data in blogData.js)
-- Ready for backend integration when needed
-- Design matches luxury reference standards provided
-- All pages maintain consistent "Executive Midnight" aesthetic
-- Images sourced from Unsplash for blog posts
+## Test Reports
+- `/app/test_reports/iteration_1.json` - Backend API tests (18/18 passed)
+- `/app/backend/tests/test_api.py` - pytest test suite
