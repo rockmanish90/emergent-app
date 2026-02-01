@@ -15,12 +15,15 @@ export const adminLogin = async (email, password) => {
     body: JSON.stringify({ email, password }),
   });
 
+  // Extract the JSON immediately so the stream is handled
+  const data = await response.json();
+
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.detail || 'Login failed');
+    // Use the variable 'data', don't call .json() again
+    throw new Error(data.detail || 'Login failed');
   }
 
-  const data = await response.json();
+  // Use the same variable 'data' to get your tokens
   localStorage.setItem('adminToken', data.token);
   localStorage.setItem('adminEmail', data.email);
   return data;
