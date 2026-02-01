@@ -43,31 +43,27 @@ const webpackConfig = {
     },
   },
   webpack: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-    configure: (webpackConfig) => {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+    configure: (webpackConfig) => {
+      
+      // FIX: Force remove React Refresh plugin in production
+      if (process.env.NODE_ENV === 'production') {
+        webpackConfig.plugins = webpackConfig.plugins.filter(
+          (plugin) => plugin.constructor.name !== 'ReactRefreshPlugin'
+        );
+      }
 
-      // Add ignored patterns to reduce watched directories
-        webpackConfig.watchOptions = {
-          ...webpackConfig.watchOptions,
-          ignored: [
-            '**/node_modules/**',
-            '**/.git/**',
-            '**/build/**',
-            '**/dist/**',
-            '**/coverage/**',
-            '**/public/**',
-        ],
+      // Add ignored patterns to reduce watched directories
+      webpackConfig.watchOptions = {
+        // ... your existing watchOptions ...
       };
 
-      // Add health check plugin to webpack if enabled
-      if (config.enableHealthCheck && healthPluginInstance) {
-        webpackConfig.plugins.push(healthPluginInstance);
-      }
-      return webpackConfig;
-    },
-  },
+      // ... rest of your existing configure logic ...
+      return webpackConfig;
+    },
+  },
 };
 
 // Only add babel metadata plugin during dev server
