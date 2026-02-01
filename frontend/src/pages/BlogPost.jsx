@@ -126,34 +126,11 @@ const BlogPost = () => {
       {/* Header */}
       <Header />
 
-      {/* Hero Image */}
-      <section style={{
-        width: '100%',
-        height: '500px',
-        overflow: 'hidden',
-        marginTop: '88px',
-        position: 'relative'
-      }}>
-        <img
-          src={post.image}
-          alt={post.title}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover'
-          }}
-        />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)'
-        }} />
-      </section>
-
       {/* Article Content */}
       <article style={{
         background: '#FFFFFF',
         padding: '80px 80px 60px',
+        paddingTop: '140px',
         display: 'flex',
         justifyContent: 'center'
       }}>

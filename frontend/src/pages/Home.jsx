@@ -754,9 +754,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <CTASection />
-
       {/* Footer */}
       <Footer />
     </div>
