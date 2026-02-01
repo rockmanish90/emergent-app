@@ -1,49 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const TermsConditions = () => {
   const navigate = useNavigate();
 
   return (
     <div className="terms-page" style={{ fontFamily: "'Inter', sans-serif" }}>
-      {/* Navigation */}
-      <nav style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        background: 'rgba(10, 25, 47, 0.95)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(212, 175, 55, 0.15)',
-        zIndex: 100,
-        padding: '24px 80px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', cursor: 'pointer' }} onClick={() => navigate('/')}>
-          <h1 style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: '24px',
-            fontWeight: '700',
-            color: '#D4AF37',
-            margin: 0,
-            letterSpacing: '1px'
-          }}>
-            RUSHABH
-          </h1>
-          <span style={{
-            fontFamily: "'Inter', sans-serif",
-            fontSize: '11px',
-            fontWeight: '400',
-            color: '#9CA3AF',
-            letterSpacing: '2px',
-            textTransform: 'uppercase'
-          }}>
-            Ventures
-          </span>
-        </div>
-      </nav>
+      {/* Header */}
+      <Header />
 
       {/* Content */}
       <section style={{
