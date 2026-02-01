@@ -224,7 +224,6 @@ const BlogList = () => {
                 </article>
               ))}
             </div>
-          )}
         </div>
       </section>
 
