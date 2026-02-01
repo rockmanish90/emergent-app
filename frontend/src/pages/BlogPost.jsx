@@ -1,20 +1,86 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ArrowLeft, Calendar, User } from 'lucide-react';
-import { getBlogBySlug, blogPosts } from '../utils/blogData';
+import { getBlogBySlug, getBlogPosts } from '../utils/api';
+import { getBlogBySlug as getFallbackPost, blogPosts as fallbackPosts } from '../utils/blogData';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const BlogPost = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const post = getBlogBySlug(slug);
+  const [post, setPost] = useState(null);
+  const [relatedPosts, setRelatedPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    const fetchPost = async () => {
+      setLoading(true);
+      try {
+        const fetchedPost = await getBlogBySlug(slug);
+        if (fetchedPost) {
+          setPost(fetchedPost);
+          // Fetch related posts
+          const allPosts = await getBlogPosts();
+          setRelatedPosts(allPosts.filter(p => p.id !== fetchedPost.id).slice(0, 3));
+        } else {
+          // Try fallback
+          const fallback = getFallbackPost(slug);
+          if (fallback) {
+            setPost(fallback);
+            setRelatedPosts(fallbackPosts.filter(p => p.id !== fallback.id).slice(0, 3));
+          } else {
+            setNotFound(true);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch blog post:', err);
+        // Try fallback data
+        const fallback = getFallbackPost(slug);
+        if (fallback) {
+          setPost(fallback);
+          setRelatedPosts(fallbackPosts.filter(p => p.id !== fallback.id).slice(0, 3));
+        } else {
+          setNotFound(true);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
   }, [slug]);
 
-  if (!post) {
+  if (loading) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#FFFFFF'
+      }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{
+            width: '50px',
+            height: '50px',
+            border: '3px solid #f3f3f3',
+            borderTop: '3px solid #D4AF37',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite',
+            margin: '0 auto 20px'
+          }} />
+          <p style={{ color: '#6B7280', fontFamily: "'Inter', sans-serif" }}>Loading article...</p>
+          <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
+        </div>
+      </div>
+    );
+  }
+
+  if (notFound || !post) {
     return (
       <div style={{
         minHeight: '100vh',
@@ -34,6 +100,7 @@ const BlogPost = () => {
           </h1>
           <button
             onClick={() => navigate('/blog')}
+            data-testid="back-to-blog-btn"
             style={{
               background: '#D4AF37',
               color: '#000000',
@@ -53,9 +120,6 @@ const BlogPost = () => {
       </div>
     );
   }
-
-  // Get related posts (exclude current post)
-  const relatedPosts = blogPosts.filter(p => p.id !== post.id).slice(0, 3);
 
   return (
     <div className="blog-post-page" style={{ fontFamily: "'Inter', sans-serif" }}>
@@ -214,6 +278,7 @@ const BlogPost = () => {
             </p>
             <button
               onClick={() => navigate('/contact')}
+              data-testid="blog-cta-contact-btn"
               style={{
                 background: '#000000',
                 color: '#FFFFFF',
@@ -271,6 +336,7 @@ const BlogPost = () => {
               {relatedPosts.map((relatedPost) => (
                 <div
                   key={relatedPost.id}
+                  data-testid={`related-post-${relatedPost.slug}`}
                   style={{
                     background: '#FFFFFF',
                     border: '1px solid rgba(0, 0, 0, 0.1)',
