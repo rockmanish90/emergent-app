@@ -4,7 +4,6 @@ import { submitApplication } from '../utils/api';
 import { toast } from 'sonner';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import CTASection from '../components/CTASection';
 
 const Home = () => {
   const [formData, setFormData] = useState({
