@@ -496,7 +496,7 @@ const AboutUs = () => {
               textAlign: 'center',
               marginTop: '20px'
             }}>
-              We are not here to make a quick fee.<br />We are here to make you a Market Legend.
+              We are here to make you a Market Legend.
             </p>
           </div>
         </div>
@@ -633,7 +633,7 @@ const AboutUs = () => {
               fontWeight: '400',
               letterSpacing: '0.2px'
             }}>
-              I am not in this business to collect fees. I am in this business to build legacies. I get my thrill when I see your company name flashing on the ticker tape and I know, "We built that."
+              I am in this business to build legacies. I get my thrill when I see your company name flashing on the ticker tape and I know, "We built that."
             </p>
 
             <p style={{
