@@ -282,7 +282,7 @@ const ContactUs = () => {
                 />
               </div>
 
-              <div style="display:none">
+              <div>
                 <label style={{
                   fontFamily: "'Inter', sans-serif",
                   fontSize: '11px',
@@ -298,7 +298,7 @@ const ContactUs = () => {
                 <input
                   type="text"
                   name="annualTurnover"
-                  value='NA'
+                  value={formData.annualTurnover}
                   onChange={handleInputChange}
                   placeholder="e.g., 75"
                   style={{
@@ -462,5 +462,4 @@ const ContactUs = () => {
     </div>
   );
 };
-//{formData.annualTurnover}
 export default ContactUs;
