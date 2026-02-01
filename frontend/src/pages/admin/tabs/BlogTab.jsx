@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Plus, Trash2, Edit2, Eye, X, Save, Code, Type, Bold, Italic, Underline, 
-  List, ListOrdered, Quote, Heading1, Heading2, Link, Image, AlignLeft, AlignCenter, AlignRight } from 'lucide-react';
+  List, ListOrdered, Quote, Heading1, Heading2, Heading3, Heading4, Link, Image, 
+  AlignLeft, AlignCenter, AlignRight, Upload } from 'lucide-react';
 import { toast } from 'sonner';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
@@ -8,7 +9,7 @@ import LinkExtension from '@tiptap/extension-link';
 import ImageExtension from '@tiptap/extension-image';
 import TextAlign from '@tiptap/extension-text-align';
 import UnderlineExtension from '@tiptap/extension-underline';
-import { getAdminBlogPosts, createBlogPost, updateBlogPost, deleteBlogPost } from '../../../utils/adminApi';
+import { getAdminBlogPosts, createBlogPost, updateBlogPost, deleteBlogPost, uploadFile, getFileUrl } from '../../../utils/adminApi';
 
 // Toolbar Button Component
 const ToolbarButton = ({ onClick, isActive, children, title }) => (
@@ -39,7 +40,7 @@ const RichTextEditor = ({ content, onChange }) => {
     extensions: [
       StarterKit.configure({
         heading: {
-          levels: [1, 2, 3],
+          levels: [1, 2, 3, 4],
         },
       }),
       LinkExtension.configure({
@@ -105,6 +106,20 @@ const RichTextEditor = ({ content, onChange }) => {
           title="Heading 2"
         >
           <Heading2 size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          isActive={editor.isActive('heading', { level: 3 })}
+          title="Heading 3"
+        >
+          <Heading3 size={18} />
+        </ToolbarButton>
+        <ToolbarButton
+          onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
+          isActive={editor.isActive('heading', { level: 4 })}
+          title="Heading 4"
+        >
+          <Heading4 size={18} />
         </ToolbarButton>
 
         <div style={{ width: '1px', background: '#ddd', margin: '0 4px' }} />
@@ -236,6 +251,12 @@ const RichTextEditor = ({ content, onChange }) => {
             margin-bottom: 0.5em;
             color: #333;
           }
+          .tiptap h4 {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 0.5em;
+            color: #555;
+          }
           .tiptap p {
             margin-bottom: 1em;
           }
@@ -284,6 +305,8 @@ const BlogTab = () => {
   const [showEditor, setShowEditor] = useState(false);
   const [editingPost, setEditingPost] = useState(null);
   const [isHtmlMode, setIsHtmlMode] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
+  const imageInputRef = useRef(null);
   const [formData, setFormData] = useState({
     slug: '',
     title: '',
@@ -326,6 +349,37 @@ const BlogTab = () => {
 
   const handleContentChange = (value) => {
     setFormData(prev => ({ ...prev, content: value }));
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file type
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (!validTypes.includes(file.type)) {
+      toast.error('Please upload a valid image file (JPG, PNG, GIF, or WebP)');
+      return;
+    }
+
+    // Validate file size (max 5MB)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image size must be less than 5MB');
+      return;
+    }
+
+    setUploadingImage(true);
+    try {
+      const uploadedFile = await uploadFile(file);
+      const imageUrl = getFileUrl(uploadedFile.name);
+      setFormData(prev => ({ ...prev, image: imageUrl }));
+      toast.success('Image uploaded successfully');
+    } catch (error) {
+      toast.error('Failed to upload image');
+    } finally {
+      setUploadingImage(false);
+      if (imageInputRef.current) imageInputRef.current.value = '';
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -688,16 +742,70 @@ const BlogTab = () => {
               </div>
             </div>
 
+            {/* Featured Image Section */}
             <div style={{ marginBottom: '20px' }}>
-              <label style={labelStyle}>Featured Image URL</label>
-              <input
-                type="text"
-                name="image"
-                value={formData.image}
-                onChange={handleInputChange}
-                style={inputStyle}
-                placeholder="https://example.com/image.jpg"
-              />
+              <label style={labelStyle}>Featured Image</label>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                <div style={{ flex: 1 }}>
+                  <input
+                    type="text"
+                    name="image"
+                    value={formData.image}
+                    onChange={handleInputChange}
+                    style={inputStyle}
+                    placeholder="Enter image URL or upload an image"
+                  />
+                </div>
+                <input
+                  type="file"
+                  ref={imageInputRef}
+                  onChange={handleImageUpload}
+                  accept="image/jpeg,image/png,image/gif,image/webp"
+                  style={{ display: 'none' }}
+                />
+                <button
+                  type="button"
+                  onClick={() => imageInputRef.current?.click()}
+                  disabled={uploadingImage}
+                  data-testid="upload-featured-image-btn"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '12px 20px',
+                    background: uploadingImage ? 'rgba(212, 175, 55, 0.5)' : 'rgba(212, 175, 55, 0.2)',
+                    border: '1px solid #D4AF37',
+                    color: '#D4AF37',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    cursor: uploadingImage ? 'not-allowed' : 'pointer',
+                    whiteSpace: 'nowrap',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  <Upload size={16} />
+                  {uploadingImage ? 'Uploading...' : 'Upload'}
+                </button>
+              </div>
+              {/* Image Preview */}
+              {formData.image && (
+                <div style={{ marginTop: '12px' }}>
+                  <img 
+                    src={formData.image} 
+                    alt="Featured preview" 
+                    style={{
+                      maxWidth: '300px',
+                      maxHeight: '180px',
+                      objectFit: 'cover',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      borderRadius: '4px'
+                    }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
             </div>
 
             <div style={{ marginBottom: '20px' }}>
