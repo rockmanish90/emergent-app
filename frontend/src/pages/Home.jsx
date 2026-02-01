@@ -84,26 +84,6 @@ const Home = () => {
         overflow: 'hidden',
         paddingTop: '100px'
       }}>
-        {/* Decorative gold lines */}
-        <div style={{
-          position: 'absolute',
-          top: '20%',
-          left: '10%',
-          width: '150px',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
-          opacity: 0.3
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '30%',
-          right: '15%',
-          width: '100px',
-          height: '1px',
-          background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)',
-          opacity: 0.3
-        }} />
-        
         <div style={{
           maxWidth: '1100px',
           width: '100%',
