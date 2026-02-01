@@ -34,12 +34,11 @@ const AboutUs = () => {
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
-        paddingTop: '100px'
+        padding: '100px 24px 60px'
       }}>
         <div style={{
           maxWidth: '1100px',
           width: '100%',
-          padding: '0 80px',
           position: 'relative',
           zIndex: 2,
           textAlign: 'center'
@@ -73,9 +72,9 @@ const AboutUs = () => {
       </section>
 
       {/* Introduction Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#FFFFFF',
-        padding: '140px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center',
         position: 'relative'
@@ -127,9 +126,9 @@ const AboutUs = () => {
       </section>
 
       {/* Two Decades Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#F9FAFB',
-        padding: '140px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center'
       }}>
@@ -211,9 +210,9 @@ const AboutUs = () => {
       </section>
 
       {/* Inner Circle Advantage Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#FFFFFF',
-        padding: '140px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center'
       }}>
@@ -316,9 +315,9 @@ const AboutUs = () => {
       </section>
 
       {/* Engineer Results Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: 'linear-gradient(180deg, #0A192F 0%, #050d1a 100%)',
-        padding: '140px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center'
       }}>
@@ -374,10 +373,10 @@ const AboutUs = () => {
               We don't promise "effort." We promise impact.
             </p>
 
-            <div style={{
+            <div className="stats-grid" style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-              gap: '40px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '24px',
               margin: '40px 0'
             }}>
               {[
@@ -385,16 +384,16 @@ const AboutUs = () => {
                 { company: 'Meson Valves', times: '173' },
                 { company: 'Transteel', times: '49' }
               ].map((item, index) => (
-                <div key={index} style={{
+                <div key={index} className="stat-card" style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(212, 175, 55, 0.3)',
-                  padding: '40px',
+                  padding: '32px 24px',
                   textAlign: 'center',
                   transition: 'all 0.3s ease'
                 }}>
-                  <div style={{
+                  <div className="stat-number" style={{
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: '56px',
+                    fontSize: 'clamp(36px, 7vw, 56px)',
                     fontWeight: '700',
                     color: '#D4AF37',
                     marginBottom: '10px',
@@ -431,9 +430,9 @@ const AboutUs = () => {
       </section>
 
       {/* Partner Mindset Section */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#F9FAFB',
-        padding: '140px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center'
       }}>
@@ -504,9 +503,9 @@ const AboutUs = () => {
       </section>
 
       {/* Personal Note from Founder */}
-      <section style={{
+      <section className="section-padding" style={{
         background: '#FFFFFF',
-        padding: '140px 80px',
+        padding: '80px 24px',
         display: 'flex',
         justifyContent: 'center'
       }}>
