@@ -522,7 +522,7 @@ const Home = () => {
             Don't just contact us. Apply for an evaluation.
           </p>
           
-          <form onSubmit={handleSubmit} style={{
+          <form onSubmit={handleSubmit} data-testid="application-form" style={{
             display: 'flex',
             flexDirection: 'column',
             gap: '32px'
@@ -543,6 +543,7 @@ const Home = () => {
               <input
                 type="text"
                 name="name"
+                data-testid="application-name-input"
                 value={formData.name}
                 onChange={handleInputChange}
                 required
@@ -588,6 +589,7 @@ const Home = () => {
               <input
                 type="text"
                 name="companyName"
+                data-testid="application-company-input"
                 value={formData.companyName}
                 onChange={handleInputChange}
                 required
@@ -633,6 +635,7 @@ const Home = () => {
               <input
                 type="text"
                 name="annualTurnover"
+                data-testid="application-turnover-input"
                 value={formData.annualTurnover}
                 onChange={handleInputChange}
                 required
@@ -679,6 +682,7 @@ const Home = () => {
               <input
                 type="tel"
                 name="mobileNumber"
+                data-testid="application-mobile-input"
                 value={formData.mobileNumber}
                 onChange={handleInputChange}
                 required
@@ -712,6 +716,7 @@ const Home = () => {
             <button
               type="submit"
               disabled={isSubmitting}
+              data-testid="application-submit-btn"
               style={{
                 background: '#000000',
                 color: '#FFFFFF',
