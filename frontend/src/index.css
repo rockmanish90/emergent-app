@@ -124,3 +124,67 @@ code {
         border-bottom-color: inherit;
     }
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Global mobile adjustments */
+    .mobile-padding {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Hero sections */
+    .hero-section {
+        padding: 120px 20px 60px !important;
+    }
+    
+    /* Section padding */
+    .section-padding {
+        padding: 60px 20px !important;
+    }
+    
+    /* Grid layouts */
+    .responsive-grid {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    
+    /* Typography scaling */
+    .hero-title {
+        font-size: 32px !important;
+        line-height: 1.2 !important;
+    }
+    
+    .section-title {
+        font-size: 28px !important;
+    }
+    
+    /* Form compact spacing */
+    .form-compact {
+        gap: 16px !important;
+    }
+    
+    .form-compact input,
+    .form-compact textarea {
+        padding: 14px 16px !important;
+    }
+    
+    .form-compact label {
+        margin-bottom: 8px !important;
+    }
+    
+    .form-compact button {
+        padding: 16px 32px !important;
+        margin-top: 8px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 28px !important;
+    }
+    
+    .section-title {
+        font-size: 24px !important;
+    }
+}
