@@ -5,6 +5,8 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsConditions from "./pages/TermsConditions";
+import BlogList from "./pages/BlogList";
+import BlogPost from "./pages/BlogPost";
 import { Toaster } from "./components/ui/sonner";
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-right" richColors />
