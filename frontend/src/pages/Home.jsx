@@ -172,100 +172,70 @@ const Home = () => {
         }} />
         
         <div style={{
-          maxWidth: '1400px',
+          maxWidth: '1100px',
           width: '100%',
           padding: '0 80px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '100px',
-          flexWrap: 'wrap',
           position: 'relative',
-          zIndex: 2
+          zIndex: 2,
+          textAlign: 'center'
         }}>
-          {/* Left Content */}
-          <div style={{ flex: '1', minWidth: '450px', maxWidth: '650px' }}>
-            <div style={{
-              width: '60px',
-              height: '2px',
-              background: '#D4AF37',
-              marginBottom: '40px'
-            }} />
-            
-            <h1 style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: 'clamp(44px, 5.5vw, 72px)',
-              fontWeight: '700',
-              color: '#D4AF37',
-              lineHeight: '1.05',
-              marginBottom: '36px',
-              letterSpacing: '-1.2px'
-            }}>
-              You Are Successful.<br />But You Are Still<br />'Invisible'.
-            </h1>
-            
-            <p style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: 'clamp(17px, 1.8vw, 20px)',
-              color: 'rgba(229, 231, 235, 0.9)',
-              lineHeight: '1.7',
-              marginBottom: '48px',
-              fontWeight: '300',
-              letterSpacing: '0.3px'
-            }}>
-              You've built a powerhouse. Your turnover is strong. Your profits are real. But to the big investors and the public markets, you don't exist yet. Your wealth is trapped inside your factory walls.
-            </p>
-            
-            <button 
-              onClick={scrollToForm}
-              style={{
-                background: '#D4AF37',
-                color: '#000000',
-                border: 'none',
-                padding: '22px 56px',
-                fontSize: '14px',
-                fontWeight: '700',
-                cursor: 'pointer',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                fontFamily: "'Inter', sans-serif",
-                boxShadow: '0 4px 20px rgba(212, 175, 55, 0.25)'
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = '#C5A028';
-                e.target.style.transform = 'translateY(-3px)';
-                e.target.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = '#D4AF37';
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 20px rgba(212, 175, 55, 0.25)';
-              }}
-            >
-              Unlock My Roadmap
-            </button>
-          </div>
-          
-          {/* Right 3D Spline */}
-          <div style={{
-            flex: '1',
-            minWidth: '450px',
-            height: '700px',
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+          <h1 style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: 'clamp(44px, 5.5vw, 72px)',
+            fontWeight: '700',
+            color: '#D4AF37',
+            lineHeight: '1.05',
+            marginBottom: '36px',
+            letterSpacing: '-1.2px'
           }}>
-            <div style={{
-              width: '100%',
-              height: '100%',
-              maxWidth: '700px',
-              overflow: 'visible'
-            }}>
-              <Spline scene="https://prod.spline.design/NbVmy6DPLhY-5Lvg/scene.splinecode" />
-            </div>
-          </div>
+            You Are Successful.<br />But You Are Still 'Invisible'.
+          </h1>
+          
+          <p style={{
+            fontFamily: "'Inter', sans-serif",
+            fontSize: 'clamp(17px, 1.8vw, 20px)',
+            color: 'rgba(229, 231, 235, 0.9)',
+            lineHeight: '1.7',
+            marginBottom: '48px',
+            fontWeight: '300',
+            letterSpacing: '0.3px',
+            maxWidth: '900px',
+            margin: '0 auto 48px'
+          }}>
+            You've built a powerhouse. Your turnover is strong. Your profits are real.<br />
+            But to the big investors and the public markets, you don't exist yet.<br />
+            Your wealth is trapped inside your factory walls.
+          </p>
+          
+          <button 
+            onClick={scrollToForm}
+            style={{
+              background: '#D4AF37',
+              color: '#000000',
+              border: 'none',
+              padding: '22px 56px',
+              fontSize: '14px',
+              fontWeight: '700',
+              cursor: 'pointer',
+              transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontFamily: "'Inter', sans-serif",
+              boxShadow: '0 4px 20px rgba(212, 175, 55, 0.25)'
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.background = '#C5A028';
+              e.target.style.transform = 'translateY(-3px)';
+              e.target.style.boxShadow = '0 12px 32px rgba(212, 175, 55, 0.4)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.background = '#D4AF37';
+              e.target.style.transform = 'translateY(0)';
+              e.target.style.boxShadow = '0 4px 20px rgba(212, 175, 55, 0.25)';
+            }}
+          >
+            [ Unlock My Roadmap ]
+          </button>
         </div>
       </section>
 
