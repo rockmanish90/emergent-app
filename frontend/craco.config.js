@@ -1,18 +1,13 @@
-// craco.config.js
 const path = require("path");
 require("dotenv").config();
 
-// Check if we're in development/preview mode (not production build)
-// Craco sets NODE_ENV=development for start, NODE_ENV=production for build
 const isDevServer = process.env.NODE_ENV !== "production";
 
-// Environment variable overrides
 const config = {
   enableHealthCheck: process.env.ENABLE_HEALTH_CHECK === "true",
-  enableVisualEdits: isDevServer, // Only enable during dev server
+  enableVisualEdits: isDevServer,
 };
 
-// Conditionally load visual edits modules only in dev mode
 let setupDevServer;
 let babelMetadataPlugin;
 
@@ -21,11 +16,7 @@ if (config.enableVisualEdits) {
   babelMetadataPlugin = require("./plugins/visual-edits/babel-metadata-plugin");
 }
 
-// Conditionally load health check modules only if enabled
-let WebpackHealthPlugin;
-let setupHealthEndpoints;
-let healthPluginInstance;
-
+let WebpackHealthPlugin, setupHealthEndpoints, healthPluginInstance;
 if (config.enableHealthCheck) {
   WebpackHealthPlugin = require("./plugins/health-check/webpack-health-plugin");
   setupHealthEndpoints = require("./plugins/health-check/health-endpoints");
@@ -33,69 +24,69 @@ if (config.enableHealthCheck) {
 }
 
 const webpackConfig = {
+  // 1. Fix the "React must be in scope" Lint error
   eslint: {
     configure: {
       extends: ["plugin:react-hooks/recommended"],
       rules: {
+        "react/react-in-jsx-scope": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
       },
     },
   },
+  
+  // 2. Fix the "React is not defined" Runtime error
+  babel: {
+    presets: [
+      [
+        "@babel/preset-react",
+        {
+          runtime: "automatic",
+        },
+      ],
+    ],
+    plugins: [
+      ...(config.enableVisualEdits && babelMetadataPlugin ? [babelMetadataPlugin] : []),
+    ],
+  },
+
   webpack: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
-    configure: (webpackConfig) => {
-      
-      // FIX: Force remove React Refresh plugin in production
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+    configure: (webpackConfig) => {
+      // 3. Fix the "React Refresh" Production leak
       if (process.env.NODE_ENV === 'production') {
         webpackConfig.plugins = webpackConfig.plugins.filter(
-          (plugin) => plugin.constructor.name !== 'ReactRefreshPlugin'
+          (plugin) => plugin.constructor && plugin.constructor.name !== 'ReactRefreshPlugin'
         );
       }
 
-      // Add ignored patterns to reduce watched directories
-      webpackConfig.watchOptions = {
-        // ... your existing watchOptions ...
+      webpackConfig.watchOptions = {
+        ignored: ['**/node_modules/**', '**/.git/**', '**/build/**', '**/dist/**'],
       };
 
-      // ... rest of your existing configure logic ...
-      return webpackConfig;
-    },
-  },
+      if (config.enableHealthCheck && healthPluginInstance) {
+        webpackConfig.plugins.push(healthPluginInstance);
+      }
+      return webpackConfig;
+    },
+  },
 };
 
-// Only add babel metadata plugin during dev server
-if (config.enableVisualEdits && babelMetadataPlugin) {
-  webpackConfig.babel = {
-    plugins: [babelMetadataPlugin],
-  };
-}
-
 webpackConfig.devServer = (devServerConfig) => {
-  // Apply visual edits dev server setup only if enabled
   if (config.enableVisualEdits && setupDevServer) {
     devServerConfig = setupDevServer(devServerConfig);
   }
-
-  // Add health check endpoints if enabled
   if (config.enableHealthCheck && setupHealthEndpoints && healthPluginInstance) {
     const originalSetupMiddlewares = devServerConfig.setupMiddlewares;
-
     devServerConfig.setupMiddlewares = (middlewares, devServer) => {
-      // Call original setup if exists
-      if (originalSetupMiddlewares) {
-        middlewares = originalSetupMiddlewares(middlewares, devServer);
-      }
-
-      // Setup health endpoints
+      if (originalSetupMiddlewares) middlewares = originalSetupMiddlewares(middlewares, devServer);
       setupHealthEndpoints(devServer, healthPluginInstance);
-
       return middlewares;
     };
   }
-
   return devServerConfig;
 };
 
