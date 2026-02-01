@@ -84,40 +84,25 @@ const BlogList = () => {
         justifyContent: 'center'
       }}>
         <div style={{ maxWidth: '1200px', width: '100%' }}>
-          {loading ? (
-            <div style={{ textAlign: 'center', padding: '60px 0' }}>
-              <div style={{
-                width: '50px',
-                height: '50px',
-                border: '3px solid #f3f3f3',
-                borderTop: '3px solid #D4AF37',
-                borderRadius: '50%',
-                animation: 'spin 1s linear infinite',
-                margin: '0 auto 20px'
-              }} />
-              <p style={{ color: '#6B7280', fontFamily: "'Inter', sans-serif" }}>Loading articles...</p>
-              <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
-            </div>
-          ) : (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-              gap: '50px'
-            }}>
-              {blogPosts.map((post) => (
-                <article
-                  key={post.id}
-                  data-testid={`blog-card-${post.slug}`}
-                  style={{
-                    background: '#FFFFFF',
-                    border: '1px solid rgba(0, 0, 0, 0.1)',
-                    overflow: 'hidden',
-                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}
-                  onClick={() => navigate(`/blog/${post.slug}`)}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
+            gap: '50px'
+          }}>
+            {blogPosts.map((post) => (
+              <article
+                key={post.id}
+                data-testid={`blog-card-${post.slug}`}
+                style={{
+                  background: '#FFFFFF',
+                  border: '1px solid rgba(0, 0, 0, 0.1)',
+                  overflow: 'hidden',
+                  transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+                onClick={() => navigate(`/blog/${post.slug}`)}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-8px)';
                     e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
